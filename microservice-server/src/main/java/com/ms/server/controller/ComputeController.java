@@ -23,12 +23,12 @@ public class ComputeController {
         ServiceInstance instance = client.getLocalServiceInstance();
         Integer r = a + b;
         logger.info("/add, host:" + instance.getHost() + ", service_id:" + instance.getServiceId() + ", result:" + r);
-        return "From Service-A, Result is " + r;
+        return "来自于server, a+b=" + r;
     }
 
     //A服务调用B服务
-    @RequestMapping(value="testServiceB",method=RequestMethod.GET)
-    public String testServiceB(@RequestParam Integer a,@RequestParam Integer b){
+    @RequestMapping(value="testService",method=RequestMethod.GET)
+    public String testService(@RequestParam Integer a,@RequestParam Integer b){
     	RestTemplate restTemplate=new RestTemplate();
     	return restTemplate.getForObject("http://localhost:3333/add?a="+a+"&b="+b, String.class);
     }

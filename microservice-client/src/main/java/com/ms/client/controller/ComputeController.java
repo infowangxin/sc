@@ -22,7 +22,7 @@ public class ComputeController {
         ServiceInstance instance = client.getLocalServiceInstance();
         Integer r = a + b;
         logger.info("/add, host:" + instance.getHost() + ", service_id:" + instance.getServiceId() + ", result:" + r);
-        return "From Service-B, Result is " + r + "\nPort:" + instance.getPort();
+        return "来自于server, a+b=" + r + " , client 端口:" + instance.getPort();
     }
 
 }
