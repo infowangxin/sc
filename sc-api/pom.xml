@@ -4,14 +4,13 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.microservice</groupId>
-		<artifactId>microservice</artifactId>
-		<version>${microservice.version}</version>
+		<groupId>com.sc</groupId>
+		<artifactId>sc</artifactId>
+		<version>${sc.version}</version>
 	</parent>
 
 	<groupId>com.ms</groupId>
-	<artifactId>microservice-server-api</artifactId>
-
+	<artifactId>sc-api</artifactId>
 	<packaging>jar</packaging>
 
 	<properties>
@@ -20,12 +19,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.ms</groupId>
-			<artifactId>microservice-base-api</artifactId>
-			<version>${microservice.version}</version>
-		</dependency>
-
-		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
@@ -33,4 +26,3 @@
 	</dependencies>
 
 </project>
-

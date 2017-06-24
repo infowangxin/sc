@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.microservice</groupId>
-	<artifactId>microservice</artifactId>
-	<version>${microservice.version}</version>
+	<groupId>com.sc</groupId>
+	<artifactId>sc</artifactId>
+	<version>${sc.version}</version>
 	<packaging>pom</packaging>
 
 	<parent>
@@ -16,16 +16,16 @@
 	</parent>
 
 	<modules>
-		<module>microservice-base-api</module>
-		<module>microservice-server-api</module>
-		<module>microservice-client-api</module>
-		<module>microservice-server</module>
-		<module>microservice-client</module>
-		<module>microservice-eureka-server</module>
+		<module>sc-api</module>
+		<module>sc-provider-api</module>
+		<module>sc-consumer-api</module>
+		<module>sc-provider</module>
+		<module>sc-consumer</module>
+		<module>sc-eureka-server</module>
 	</modules>
 
 	<properties>
-		<microservice.version>1.0</microservice.version>
+		<sc.version>1.0</sc.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.7</java.version>
