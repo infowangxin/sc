@@ -4,13 +4,12 @@ import java.util.Date;
 
 import com.ms.api.model.BaseEntity;
 
-
-/** 
+/**
  * @Description 新闻对象
- * @author 王鑫 
- * @date Mar 16, 2017 3:25:39 PM  
+ * @author 王鑫
+ * @date Mar 16, 2017 3:25:39 PM
  */
-public class News implements BaseEntity<String> {
+public class News extends BaseEntity<String> {
 
     private static final long serialVersionUID = 3624947930970250778L;
 

@@ -9,7 +9,7 @@ import com.ms.api.model.BaseEntity;
  * @author 王鑫 
  * @date Apr 12, 2017 9:11:44 AM  
  */
-public class User implements BaseEntity<String> {
+public class User extends BaseEntity<String> {
 
     private static final long serialVersionUID = 1227495748732942139L;
 

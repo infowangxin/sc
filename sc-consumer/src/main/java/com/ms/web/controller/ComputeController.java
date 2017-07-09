@@ -1,4 +1,4 @@
-package com.ms.client.controller;
+package com.ms.web.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

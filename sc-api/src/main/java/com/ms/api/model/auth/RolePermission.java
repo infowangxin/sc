@@ -7,7 +7,7 @@ import com.ms.api.model.BaseEntity;
  * @author 王鑫 
  * @date Apr 12, 2017 9:11:20 AM  
  */
-public class RolePermission implements BaseEntity<String> {
+public class RolePermission extends BaseEntity<String> {
 
     private static final long serialVersionUID = -7948507636703811294L;
 

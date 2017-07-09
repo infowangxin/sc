@@ -2,12 +2,12 @@ package com.ms.api.model.auth;
 
 import com.ms.api.model.BaseEntity;
 
-/** 
+/**
  * @Description 菜单对象
- * @author 王鑫 
- * @date Apr 12, 2017 9:10:38 AM  
+ * @author 王鑫
+ * @date Apr 12, 2017 9:10:38 AM
  */
-public class Permission implements BaseEntity<String> {
+public class Permission extends BaseEntity<String> {
 
     private static final long serialVersionUID = -7141829387338999544L;
 
@@ -24,7 +24,7 @@ public class Permission implements BaseEntity<String> {
 
     /** 菜单是否显示 **/
     private Integer hide;
-    
+
     /** 菜单级别，最多三级 **/
     private Integer lev;
 
@@ -76,7 +76,7 @@ public class Permission implements BaseEntity<String> {
     public void setHide(Integer hide) {
         this.hide = hide;
     }
-    
+
     public Integer getLev() {
         return lev;
     }
