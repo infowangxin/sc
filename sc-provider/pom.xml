@@ -100,7 +100,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
-			<scope>test</scope>
+			<scope>true</scope>
 		</dependency>
 	</dependencies>
 </project>
