@@ -17,8 +17,6 @@
 
 	<modules>
 		<module>sc-api</module>
-		<module>sc-provider-api</module>
-		<module>sc-consumer-api</module>
 		<module>sc-provider</module>
 		<module>sc-consumer</module>
 		<module>sc-eureka-server</module>

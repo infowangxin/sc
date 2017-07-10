@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
 import com.ms.api.model.simple.News;
-import com.ms.service.simple.NewsService;
+import com.ms.api.service.simple.NewsService;
 
 /**
  * @Description 新闻示例

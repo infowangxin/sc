@@ -10,17 +10,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
 import com.ms.api.model.auth.PermissionVo;
 import com.ms.api.model.auth.Role;
 import com.ms.api.model.auth.User;
+import com.ms.api.service.auth.AuthService;
+import com.ms.api.service.auth.PermissionService;
+import com.ms.api.service.auth.RoleService;
 import com.ms.controller.BaseController;
-import com.ms.service.auth.AuthService;
-import com.ms.service.auth.PermissionService;
-import com.ms.service.auth.RoleService;
 
 @RestController
 @RequestMapping("/auth")
@@ -37,7 +36,7 @@ public class AuthController extends BaseController {
     @Autowired
     private PermissionService permissionService;
 
-    @RequestMapping(value = "/findUserByName/{username}", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/findUserByName/{username}", method = RequestMethod.GET)
     ResponseEntity<User> findUserByName(@PathVariable String username) {
         User user = authService.findUserByName(username);
         String result = JSON.toJSONString(user);
@@ -45,19 +44,21 @@ public class AuthController extends BaseController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/findRoleByUserId/{userId}", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/findRoleByUserId/{userId}", method = RequestMethod.GET)
     ResponseEntity<List<Role>> findRoleByUserId(@PathVariable String userId) {
         List<Role> roles = roleService.findRoleByUserId(userId);
         String result = JSON.toJSONString(roles);
         log.debug("{}", result);
+        // return result;
         return new ResponseEntity<>(roles, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/getPermissions/{userId}", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/getPermissions/{userId}", method = RequestMethod.GET)
     ResponseEntity<List<PermissionVo>> getPermissions(@PathVariable String userId) {
         List<PermissionVo> pers = permissionService.getPermissions(userId);
         String result = JSON.toJSONString(pers);
         log.debug("{}", result);
+        // return result;
         return new ResponseEntity<>(pers, HttpStatus.OK);
     }
 

@@ -26,12 +26,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.ms</groupId>
-			<artifactId>sc-provider-api</artifactId>
-			<version>${sc.version}</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>

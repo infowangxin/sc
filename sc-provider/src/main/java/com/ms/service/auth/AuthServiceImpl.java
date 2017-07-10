@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ms.api.model.auth.Role;
 import com.ms.api.model.auth.User;
+import com.ms.api.service.auth.AuthService;
 import com.ms.mapper.auth.RoleMapper;
 import com.ms.mapper.auth.UserMapper;
 

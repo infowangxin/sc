@@ -27,12 +27,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.ms</groupId>
-			<artifactId>sc-provider-api</artifactId>
-			<version>${sc.version}</version>
-		</dependency>
-
-		<dependency>
 			<!-- 核心Spring Boot starter，包括自动配置支持，日志和YAML -->
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>

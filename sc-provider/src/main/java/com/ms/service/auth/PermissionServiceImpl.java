@@ -12,10 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ms.api.common.UUIDUtil;
 import com.ms.api.common.exception.BusinessException;
+import com.ms.api.common.util.UUIDUtil;
 import com.ms.api.model.auth.Permission;
 import com.ms.api.model.auth.PermissionVo;
+import com.ms.api.service.auth.PermissionService;
 import com.ms.mapper.auth.PermissionMapper;
 
 @Service("permissionService")

@@ -1,5 +1,6 @@
 package com.ms.common.shiro;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -29,6 +30,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import com.alibaba.fastjson.JSON;
 import com.ms.api.common.constants.Constants;
 import com.ms.api.common.exception.BusinessException;
 import com.ms.api.common.salt.Encodes;
@@ -49,25 +51,27 @@ public class AuthorizingRealmImpl extends AuthorizingRealm {
 
     private List<PermissionVo> getPermissions(String id) {
         RestTemplate restTemplate = new RestTemplate();
-        Map<String, String> reqParam = new HashMap<String, String>();// FIXME 调用方式是否可以完善
-        reqParam.put("userId", id);
-        ResponseEntity<List> perRes = restTemplate.getForEntity(SERVER_ADDRESS + "auth/getPermissions", List.class, reqParam);
-        return perRes.getBody();
+        log.debug("#getPermissions , userId={}", id);
+        String res = restTemplate.getForObject(SERVER_ADDRESS + "auth/getPermissions/" + id, String.class);
+        log.debug("# pers={}", res);
+        List<PermissionVo> pers = new ArrayList<PermissionVo>();
+        pers = JSON.parseArray(res, PermissionVo.class);
+        return pers;
     }
 
     private List<Role> findRoleByUserId(String id) {
         RestTemplate restTemplate = new RestTemplate();
-        Map<String, String> reqParam = new HashMap<String, String>();// FIXME 调用方式是否可以完善
-        reqParam.put("userId", id);
-        ResponseEntity<List> roleRes = restTemplate.getForEntity(SERVER_ADDRESS + "auth/findRoleByUserId", List.class, reqParam);
-        return roleRes.getBody();
+        log.debug("# findRoleByUserId , userId={}", id);
+        String res = restTemplate.getForObject(SERVER_ADDRESS + "auth/findRoleByUserId/" + id, String.class);
+        log.debug("# roles={}", res);
+        List<Role> roles = new ArrayList<Role>();
+        roles = JSON.parseArray(res, Role.class);
+        return roles;
     }
 
     private User findUserByName(String username) {
         RestTemplate restTemplate = new RestTemplate();
-        Map<String, String> reqParam = new HashMap<String, String>();// FIXME 调用方式是否可以完善
-        reqParam.put("username", username);
-        ResponseEntity<User> userRes = restTemplate.getForEntity(SERVER_ADDRESS + "auth/findUserByName", User.class, reqParam);
+        ResponseEntity<User> userRes = restTemplate.getForEntity(SERVER_ADDRESS + "auth/findUserByName/" + username, User.class);
         return userRes.getBody();
     }
 

@@ -10,14 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ms.api.common.UUIDUtil;
 import com.ms.api.common.constants.Constants;
 import com.ms.api.common.exception.BusinessException;
 import com.ms.api.common.salt.Digests;
 import com.ms.api.common.salt.Encodes;
+import com.ms.api.common.util.UUIDUtil;
 import com.ms.api.model.auth.Role;
 import com.ms.api.model.auth.User;
 import com.ms.api.model.auth.UserRole;
+import com.ms.api.service.auth.UserService;
 import com.ms.mapper.auth.RoleMapper;
 import com.ms.mapper.auth.UserMapper;
 import com.ms.mapper.auth.UserRoleMapper;

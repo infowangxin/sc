@@ -1,4 +1,4 @@
-package com.ms.service.simple;
+package com.ms.api.service.simple;
 
 import java.util.List;
 
