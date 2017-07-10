@@ -50,7 +50,9 @@
 			</ul>
 		</div></li>
 
-	<li class="user-dropdown"><a href="#" class="btn  dropdown-toggle" data-toggle="dropdown"> <img src="${ctx}/static/images/photos/user-avatar.png" alt="" width="20"> <@shiro.principal property="name" /> <span class="caret"></span>
+	<li class="user-dropdown"><a href="#" class="btn  dropdown-toggle" data-toggle="dropdown"> <img src="${ctx}/static/images/photos/user-avatar.png" alt="" width="20"> 
+	<#-- <@shiro.principal property="name" /> -->
+	<span class="caret"></span>
 	</a>
 		<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
 			<li><a href="#"><i class="fa fa-user"></i> Profile</a></li>

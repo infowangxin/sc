@@ -41,8 +41,6 @@ public class NewsServiceImpl implements NewsService {
             news.setId(UUIDUtil.getRandom32PK());
             news.setCreateTime(Calendar.getInstance().getTime());
             int flag = newsMapper.insert(news);
-            if (StringUtils.equals(news.getTitle(), "a"))
-                throw new BusinessException("001", "测试事务回溯");
             if (flag == 1)
                 return true;
             else

@@ -8,6 +8,9 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
@@ -18,10 +21,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.github.pagehelper.PageInfo;
+import com.ms.api.common.util.DateUtil;
 import com.ms.api.model.simple.News;
-import com.ms.api.service.simple.NewsService;
 
 /**
  * @Description 新闻示例
@@ -33,8 +39,38 @@ public class NewsController {
 
     private static final Logger log = LoggerFactory.getLogger(NewsController.class);
 
-    // @Autowired
-    private NewsService newsService;
+    private static final String SERVER_ADDRESS = "http://localhost:2222/";
+
+    private boolean addNews(News news) {
+        log.debug("# parameter ={}", JSON.toJSONString(news));
+        RestTemplate restTemplate = new RestTemplate();
+        Boolean res = restTemplate.postForObject(SERVER_ADDRESS + "simple/addNews/", news, Boolean.class);
+        return res;
+    }
+
+    private News findNewsById(String id) {
+        log.debug("# parameter ={}", id);
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<News> res = restTemplate.getForEntity(SERVER_ADDRESS + "simple/findNewsById/" + id, News.class);
+        return res.getBody();
+    }
+
+    private boolean editNews(News news) {
+        log.debug("# parameter ={}", JSON.toJSONString(news));
+        RestTemplate restTemplate = new RestTemplate();
+        Boolean res = restTemplate.postForObject(SERVER_ADDRESS + "simple/editNews/", news, Boolean.class);
+        return res;
+    }
+
+    private PageInfo<News> findNewsByPage(Integer pageNum, String keywords) {
+        log.debug("# parameter , {}  , {}", pageNum, keywords);
+        RestTemplate restTemplate = new RestTemplate();
+        Map<String, Object> parameter = new HashMap<String, Object>();
+        parameter.put("pageNum", pageNum);
+        parameter.put("keywords", keywords);
+        ResponseEntity<PageInfo> res = restTemplate.getForEntity(SERVER_ADDRESS + "simple/findNewsByPage/", PageInfo.class, parameter);
+        return res.getBody();
+    }
 
     /*
      * 表单提交日期绑定
@@ -66,7 +102,7 @@ public class NewsController {
     @RequestMapping(value = "/news/add", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, String> add(@ModelAttribute("newsForm") News news) {
-        boolean flag = newsService.addNews(news);
+        boolean flag = addNews(news);
         Map<String, String> result = new HashMap<>();
         if (flag) {
             result.put("status", "1");
@@ -86,7 +122,7 @@ public class NewsController {
     @RequestMapping(value = "/news/load/{id}", method = RequestMethod.GET)
     public String load(@PathVariable String id, ModelMap map) {
         log.info("# ajax加载新闻对象");
-        News news = newsService.findNewsById(id);
+        News news = findNewsById(id);
         map.addAttribute("news", news);
         return "view/news/edit_form";
     }
@@ -100,7 +136,7 @@ public class NewsController {
     @RequestMapping(value = "/news/edit", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, String> edit(@ModelAttribute("newsForm") News news) {
-        boolean flag = newsService.editNews(news);
+        boolean flag = editNews(news);
         Map<String, String> result = new HashMap<>();
         if (flag) {
             result.put("status", "1");
@@ -114,7 +150,7 @@ public class NewsController {
 
     @RequestMapping(value = "/news/list", method = RequestMethod.GET)
     public String list(ModelMap map) {
-        PageInfo<News> page = newsService.findNewsByPage(null, null);
+        PageInfo<News> page = findNewsByPage(null, null);
         map.put("page", page);
         return "view/news/list";
     }
@@ -122,44 +158,10 @@ public class NewsController {
     @RequestMapping(value = "/news/list_page", method = RequestMethod.POST)
     public String list_page(@RequestParam(value = "keywords", required = false) String keywords, @RequestParam(value = "pageNum", required = false) Integer pageNum, ModelMap map) {
         log.info("#分页查询新闻 pageNum={} , keywords={}", pageNum, keywords);
-        PageInfo<News> page = newsService.findNewsByPage(pageNum, keywords);
+        PageInfo<News> page = findNewsByPage(pageNum, keywords);
         map.put("page", page);
         map.put("keywords", keywords);
         return "view/news/list_page";
-    }
-
-    @RequestMapping(value = "/news/list1", method = RequestMethod.GET)
-    public String list1(ModelMap map) {
-        log.info("#分页查询数据库1");
-        PageInfo<News> page = newsService.findNewsByPage1(null, null);
-        map.put("page", page);
-        return "view/news/list1";
-    }
-
-    @RequestMapping(value = "/news/list_page1", method = RequestMethod.POST)
-    public String list_page1(@RequestParam(value = "keywords", required = false) String keywords, @RequestParam(value = "pageNum", required = false) Integer pageNum, ModelMap map) {
-        log.info("#分页查询数据库2 pageNum={} , keywords={}", pageNum, keywords);
-        PageInfo<News> page = newsService.findNewsByPage1(pageNum, keywords);
-        map.put("page", page);
-        map.put("keywords", keywords);
-        return "view/news/list_page1";
-    }
-
-    @RequestMapping(value = "/news/list2", method = RequestMethod.GET)
-    public String list2(ModelMap map) {
-        log.info("#分页查询数据库2");
-        PageInfo<News> page = newsService.findNewsByPage2(null, null);
-        map.put("page", page);
-        return "view/news/list2";
-    }
-
-    @RequestMapping(value = "/news/list_page2", method = RequestMethod.POST)
-    public String list_page2(@RequestParam(value = "keywords", required = false) String keywords, @RequestParam(value = "pageNum", required = false) Integer pageNum, ModelMap map) {
-        log.info("#分页查询数据库2 pageNum={} , keywords={}", pageNum, keywords);
-        PageInfo<News> page = newsService.findNewsByPage2(pageNum, keywords);
-        map.put("page", page);
-        map.put("keywords", keywords);
-        return "view/news/list_page2";
     }
 
 }

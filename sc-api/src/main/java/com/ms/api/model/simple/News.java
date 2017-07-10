@@ -60,7 +60,7 @@ public class News extends BaseEntity<String> {
     public Date getNewsTime() {
         return newsTime;
     }
-
+    
     public void setNewsTime(Date newsTime) {
         this.newsTime = newsTime;
     }
@@ -68,7 +68,7 @@ public class News extends BaseEntity<String> {
     public Date getCreateTime() {
         return createTime;
     }
-
+    
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
