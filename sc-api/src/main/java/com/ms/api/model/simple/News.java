@@ -2,6 +2,7 @@ package com.ms.api.model.simple;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ms.api.model.BaseEntity;
 
 /**
@@ -21,8 +22,10 @@ public class News extends BaseEntity<String> {
 
     private String address;// 新闻发生地址
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss.SSS")
     private Date newsTime;// 新闻发生时间
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss.SSS")
     private Date createTime;// 新闻发布时间
 
     public String getId() {

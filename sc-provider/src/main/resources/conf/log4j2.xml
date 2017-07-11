@@ -20,7 +20,7 @@
 	<loggers>
 		<!-- 3rdparty Loggers -->
 		<logger name="com.sc" level="debug" />
-		<logger name="org.springframework" level="debug" />
+		<logger name="org.springframework" level="info" />
 		<logger name="org.jboss" level="info" />
 		<logger name="org.fasterxml" level="info" />
 		<logger name="com.netflix" level="info" />
@@ -28,7 +28,6 @@
 		<logger name="org.apache" level="info" />
 		<logger name="com.alibaba" level="info" />
 		<logger name="druid.sql" level="info" />
-		<logger name="freemarker" level="info" />
 		<logger name="org.mybatis" level="info" />
 
 		<!-- mybatis sql log -->
