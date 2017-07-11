@@ -57,6 +57,7 @@ public class NewsController {
         return res;
     }
 
+    @SuppressWarnings("unchecked")
     private PageInfo<News> findNewsByPage(Integer pageNum, String keywords) {
         log.debug("# parameter , {}  , {}", pageNum, keywords);
         RestTemplate restTemplate = new RestTemplate();

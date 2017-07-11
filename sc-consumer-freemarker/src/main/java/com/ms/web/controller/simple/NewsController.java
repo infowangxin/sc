@@ -8,7 +8,6 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
@@ -22,10 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
-import com.ms.api.common.util.DateUtil;
 import com.ms.api.model.simple.News;
 
 /**
@@ -61,6 +57,7 @@ public class NewsController {
         return res;
     }
 
+    @SuppressWarnings("unchecked")
     private PageInfo<News> findNewsByPage(Integer pageNum, String keywords) {
         log.debug("# parameter , {}  , {}", pageNum, keywords);
         RestTemplate restTemplate = new RestTemplate();

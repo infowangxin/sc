@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ms.api.common.constants.Constants;
-import com.ms.api.common.exception.BusinessException;
 import com.ms.api.common.util.UUIDUtil;
 import com.ms.api.model.simple.News;
 import com.ms.api.service.simple.NewsService;
