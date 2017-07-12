@@ -27,3 +27,7 @@
 
 * 访问 sc-consumer-freemarker
 `浏览器访问 `[http://localhost:4444](http://localhost:4444)`，全看到登录页面`
+
+[GitHub](https://github.com/wangxinforme) [issues](https://github.com/wangxinforme/sc/issues)
+
+![Markdown](http://wx4.sinaimg.cn/mw690/005OXyHfgy1fh6evxykwhj30ag0as3zv.jpg)
