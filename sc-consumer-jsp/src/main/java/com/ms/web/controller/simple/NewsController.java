@@ -26,12 +26,14 @@ import org.springframework.web.client.RestTemplate;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
 import com.ms.api.model.simple.News;
+import com.ms.feign.NewsRemoteService;
 
 /**
  * @Description 新闻示例
  * @author 王鑫
  * @date Mar 16, 2017 3:58:01 PM
  */
+@SuppressWarnings("unused")
 @Controller
 public class NewsController {
 
@@ -40,13 +42,16 @@ public class NewsController {
     @Autowired
     private LoadBalancerClient loadBalancerClient;
 
+    @Autowired
+    private NewsRemoteService newsRemoteService;
+
     /**
      * @Description 获取服务端地址，采用的是轮循模式
      * @author 王鑫
      * @return 服务端地址
      */
     public String getServerAddress() {
-        ServiceInstance instance = this.loadBalancerClient.choose("service");
+        ServiceInstance instance = this.loadBalancerClient.choose("providerServer");
         String serverAddress = "http://" + instance.getHost() + ":" + Integer.toString(instance.getPort()) + "/";
         log.debug("# server adderss={}", serverAddress);
         return serverAddress;
@@ -114,7 +119,8 @@ public class NewsController {
     @RequestMapping(value = "/news/add", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, String> add(@ModelAttribute("newsForm") News news) {
-        boolean flag = addNews(news);
+        // boolean flag = addNews(news);
+        boolean flag = newsRemoteService.addNews(news);
         Map<String, String> result = new HashMap<>();
         if (flag) {
             result.put("status", "1");
@@ -134,7 +140,8 @@ public class NewsController {
     @RequestMapping(value = "/news/load/{id}", method = RequestMethod.GET)
     public String load(@PathVariable String id, ModelMap map) {
         log.info("# ajax加载新闻对象");
-        News news = findNewsById(id);
+        // News news = findNewsById(id);
+        News news = newsRemoteService.findNewsById(id);
         map.addAttribute("news", news);
         return "view/news/edit_form";
     }
@@ -148,7 +155,8 @@ public class NewsController {
     @RequestMapping(value = "/news/edit", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, String> edit(@ModelAttribute("newsForm") News news) {
-        boolean flag = editNews(news);
+        // boolean flag = editNews(news);
+        boolean flag = newsRemoteService.editNews(news);
         Map<String, String> result = new HashMap<>();
         if (flag) {
             result.put("status", "1");
@@ -162,7 +170,8 @@ public class NewsController {
 
     @RequestMapping(value = "/news/list", method = RequestMethod.GET)
     public String list(ModelMap map) {
-        PageInfo<News> page = findNewsByPage(null, null);
+        // PageInfo<News> page = findNewsByPage(null, null);
+        PageInfo<News> page = newsRemoteService.findNewsByPage(null, null);
         log.debug("{}", JSON.toJSONString(page));
 
         map.put("page", page);
@@ -172,7 +181,8 @@ public class NewsController {
     @RequestMapping(value = "/news/list_page", method = RequestMethod.POST)
     public String list_page(@RequestParam(value = "keywords", required = false) String keywords, @RequestParam(value = "pageNum", required = false) Integer pageNum, ModelMap map) {
         log.info("#分页查询新闻 pageNum={} , keywords={}", pageNum, keywords);
-        PageInfo<News> page = findNewsByPage(pageNum, keywords);
+        // PageInfo<News> page = findNewsByPage(pageNum, keywords);
+        PageInfo<News> page = newsRemoteService.findNewsByPage(keywords, pageNum);
         map.put("page", page);
         map.put("keywords", keywords);
         return "view/news/list_page";

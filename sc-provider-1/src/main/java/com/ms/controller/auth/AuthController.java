@@ -5,8 +5,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,29 +35,29 @@ public class AuthController extends BaseController {
     private PermissionService permissionService;
 
     @GetMapping("/findUserByName/{username}")
-    ResponseEntity<User> findUserByName(@PathVariable String username) {
+    User findUserByName(@PathVariable String username) {
         User user = authService.findUserByName(username);
         String result = JSON.toJSONString(user);
         log.debug("{}", result);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return user;
     }
 
     @GetMapping("/findRoleByUserId/{userId}")
-    ResponseEntity<List<Role>> findRoleByUserId(@PathVariable String userId) {
+    List<Role> findRoleByUserId(@PathVariable String userId) {
         List<Role> roles = roleService.findRoleByUserId(userId);
         String result = JSON.toJSONString(roles);
         log.debug("{}", result);
         // return result;
-        return new ResponseEntity<>(roles, HttpStatus.OK);
+        return roles;
     }
 
     @GetMapping("/getPermissions/{userId}")
-    ResponseEntity<List<PermissionVo>> getPermissions(@PathVariable String userId) {
+    List<PermissionVo> getPermissions(@PathVariable String userId) {
         List<PermissionVo> pers = permissionService.getPermissions(userId);
         String result = JSON.toJSONString(pers);
         log.debug("{}", result);
         // return result;
-        return new ResponseEntity<>(pers, HttpStatus.OK);
+        return pers;
     }
 
 }
