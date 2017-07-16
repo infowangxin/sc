@@ -98,6 +98,9 @@ public class ShiroConfiguration {
 
         // filterChainDefinitionMap.put("/user/edit/**", "authc,perms[user:edit]");// 这里为了测试，固定写死的值，也可以从数据库或其他配置中读取
 
+        filterChainDefinitionMap.put("/info", "anon");// anon 可以理解为不拦截
+        filterChainDefinitionMap.put("/add", "anon");// anon 可以理解为不拦截
+        
         filterChainDefinitionMap.put("/static/**", "anon");// anon 可以理解为不拦截
         filterChainDefinitionMap.put("/login", "authc");
         filterChainDefinitionMap.put("/logout", "logout");

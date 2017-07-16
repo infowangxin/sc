@@ -7,7 +7,10 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
@@ -34,26 +37,39 @@ public class NewsController {
 
     private static final Logger log = LoggerFactory.getLogger(NewsController.class);
 
-    private static final String SERVER_ADDRESS = "http://localhost:2222/";
+    @Autowired
+    private LoadBalancerClient loadBalancerClient;
+
+    /**
+     * @Description 获取服务端地址，采用的是轮循模式
+     * @author 王鑫
+     * @return 服务端地址
+     */
+    public String getServerAddress() {
+        ServiceInstance instance = this.loadBalancerClient.choose("service");
+        String serverAddress = "http://" + instance.getHost() + ":" + Integer.toString(instance.getPort()) + "/";
+        log.debug("# server adderss={}", serverAddress);
+        return serverAddress;
+    }
 
     private boolean addNews(News news) {
         log.debug("# parameter ={}", JSON.toJSONString(news));
         RestTemplate restTemplate = new RestTemplate();
-        Boolean res = restTemplate.postForObject(SERVER_ADDRESS + "simple/addNews/", news, Boolean.class);
+        Boolean res = restTemplate.postForObject(getServerAddress() + "simple/addNews/", news, Boolean.class);
         return res;
     }
 
     private News findNewsById(String id) {
         log.debug("# parameter ={}", id);
         RestTemplate restTemplate = new RestTemplate();
-        News res = restTemplate.getForObject(SERVER_ADDRESS + "simple/findNewsById/" + id, News.class);
+        News res = restTemplate.getForObject(getServerAddress() + "simple/findNewsById/" + id, News.class);
         return res;
     }
 
     private boolean editNews(News news) {
         log.debug("# parameter ={}", JSON.toJSONString(news));
         RestTemplate restTemplate = new RestTemplate();
-        Boolean res = restTemplate.postForObject(SERVER_ADDRESS + "simple/editNews/", news, Boolean.class);
+        Boolean res = restTemplate.postForObject(getServerAddress() + "simple/editNews/", news, Boolean.class);
         return res;
     }
 
@@ -64,7 +80,7 @@ public class NewsController {
         Map<String, Object> parameter = new HashMap<String, Object>();
         parameter.put("pageNum", pageNum);
         parameter.put("keywords", keywords);
-        PageInfo<News> res = restTemplate.getForObject(SERVER_ADDRESS + "simple/findNewsByPage/", PageInfo.class, parameter);
+        PageInfo<News> res = restTemplate.getForObject(getServerAddress() + "simple/findNewsByPage/", PageInfo.class, parameter);
         return res;
     }
 
@@ -147,13 +163,7 @@ public class NewsController {
     @RequestMapping(value = "/news/list", method = RequestMethod.GET)
     public String list(ModelMap map) {
         PageInfo<News> page = findNewsByPage(null, null);
-
-        // JSON.DEFFAULT_DATE_FORMAT = DateUtil.fm_yyyy_MM_dd_HHmmssSSS;
-        // String str = JSON.toJSONString(page.getList(), SerializerFeature.WriteDateUseDateFormat);
-        // page.setList(JSON.parseArray(str, News.class));
-        //
-        // JSON.DEFFAULT_DATE_FORMAT = DateUtil.fm_yyyy_MM_dd_HHmmssSSS;
-        log.debug("{}", JSON.toJSONString(page, true));
+        log.debug("{}", JSON.toJSONString(page));
 
         map.put("page", page);
         return "view/news/list";

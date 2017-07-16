@@ -20,7 +20,8 @@
 		<module>sc-consumer-freemarker</module>
 		<module>sc-consumer-jsp</module>
 		<module>sc-eureka-server</module>
-		<module>sc-provider</module>
+		<module>sc-provider-1</module>
+		<module>sc-provider-2</module>
 	</modules>
 
 	<properties>

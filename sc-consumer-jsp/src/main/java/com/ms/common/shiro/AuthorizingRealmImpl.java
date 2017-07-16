@@ -25,6 +25,9 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
@@ -45,12 +48,25 @@ public class AuthorizingRealmImpl extends AuthorizingRealm {
 
     private static final Logger log = LoggerFactory.getLogger(AuthorizingRealmImpl.class);
 
-    private static final String SERVER_ADDRESS = "http://localhost:2222/";
+    @Autowired
+    private LoadBalancerClient loadBalancerClient;
+
+    /**
+     * @Description 获取服务端地址，采用的是轮循模式
+     * @author 王鑫
+     * @return 服务端地址
+     */
+    public String getServerAddress() {
+        ServiceInstance instance = this.loadBalancerClient.choose("service");
+        String serverAddress = "http://" + instance.getHost() + ":" + Integer.toString(instance.getPort()) + "/";
+        log.debug("# server adderss={}", serverAddress);
+        return serverAddress;
+    }
 
     private List<PermissionVo> getPermissions(String id) {
         RestTemplate restTemplate = new RestTemplate();
         log.debug("#getPermissions , userId={}", id);
-        String res = restTemplate.getForObject(SERVER_ADDRESS + "auth/getPermissions/" + id, String.class);
+        String res = restTemplate.getForObject(getServerAddress() + "auth/getPermissions/" + id, String.class);
         log.debug("# pers={}", res);
         List<PermissionVo> pers = new ArrayList<PermissionVo>();
         pers = JSON.parseArray(res, PermissionVo.class);
@@ -60,7 +76,7 @@ public class AuthorizingRealmImpl extends AuthorizingRealm {
     private List<Role> findRoleByUserId(String id) {
         RestTemplate restTemplate = new RestTemplate();
         log.debug("# findRoleByUserId , userId={}", id);
-        String res = restTemplate.getForObject(SERVER_ADDRESS + "auth/findRoleByUserId/" + id, String.class);
+        String res = restTemplate.getForObject(getServerAddress() + "auth/findRoleByUserId/" + id, String.class);
         log.debug("# roles={}", res);
         List<Role> roles = new ArrayList<Role>();
         roles = JSON.parseArray(res, Role.class);
@@ -69,7 +85,7 @@ public class AuthorizingRealmImpl extends AuthorizingRealm {
 
     private User findUserByName(String username) {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<User> userRes = restTemplate.getForEntity(SERVER_ADDRESS + "auth/findUserByName/" + username, User.class);
+        ResponseEntity<User> userRes = restTemplate.getForEntity(getServerAddress() + "auth/findUserByName/" + username, User.class);
         return userRes.getBody();
     }
 
