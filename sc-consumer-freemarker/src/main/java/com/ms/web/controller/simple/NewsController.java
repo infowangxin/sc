@@ -26,7 +26,7 @@ import org.springframework.web.client.RestTemplate;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
 import com.ms.api.model.simple.News;
-import com.ms.feign.NewsRemoteService;
+import com.ms.remote.service.simple.NewsRemoteService;
 
 /**
  * @Description 新闻示例

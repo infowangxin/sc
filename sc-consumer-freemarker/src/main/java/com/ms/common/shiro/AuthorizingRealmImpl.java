@@ -38,7 +38,7 @@ import com.ms.api.model.auth.PermissionVo;
 import com.ms.api.model.auth.Role;
 import com.ms.api.model.auth.User;
 import com.ms.common.shiro.vo.Principal;
-import com.ms.feign.AuthRemoteService;
+import com.ms.remote.service.auth.AuthRemoteService;
 
 /**
  * @author Vincent.wang

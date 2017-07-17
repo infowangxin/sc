@@ -19,10 +19,14 @@
 	</properties>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>com.ms</groupId>
 			<artifactId>sc-api</artifactId>
+			<version>${sc.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ms</groupId>
+			<artifactId>sc-feign</artifactId>
 			<version>${sc.version}</version>
 		</dependency>
 
