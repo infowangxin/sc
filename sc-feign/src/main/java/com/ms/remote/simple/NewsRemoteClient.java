@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.github.pagehelper.PageInfo;
 import com.ms.api.model.simple.News;
 
-@FeignClient(path = "simple", value = "providerServer")
+@FeignClient(path = "simple", value = "provider")
 public interface NewsRemoteClient {
 
     @RequestMapping(value = "/addNews", method = RequestMethod.POST)

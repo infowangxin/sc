@@ -17,11 +17,11 @@
 
 	<modules>
 		<module>sc-api</module>
-		<module>sc-consumer-freemarker</module>
-		<module>sc-consumer-jsp</module>
-		<module>sc-eureka-server</module>
+		<module>sc-eureka</module>
+		<module>sc-eureka-consumer-freemarker</module>
+		<module>sc-eureka-consumer-jsp</module>
+		<module>sc-eureka-provider</module>
 		<module>sc-feign</module>
-		<module>sc-provider</module>
 	</modules>
 
 	<properties>

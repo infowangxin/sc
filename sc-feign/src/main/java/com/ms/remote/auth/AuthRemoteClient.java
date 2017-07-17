@@ -11,7 +11,7 @@ import com.ms.api.model.auth.PermissionVo;
 import com.ms.api.model.auth.Role;
 import com.ms.api.model.auth.User;
 
-@FeignClient(path = "auth", value = "providerServer")
+@FeignClient(path = "auth", value = "provider")
 public interface AuthRemoteClient {
 
     @RequestMapping(value = "/findUserByName/{username}", method = RequestMethod.GET)
