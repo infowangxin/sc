@@ -1,4 +1,4 @@
-package com.ms.feign;
+package com.ms.remote.auth;
 
 import java.util.List;
 
@@ -12,15 +12,15 @@ import com.ms.api.model.auth.Role;
 import com.ms.api.model.auth.User;
 
 @FeignClient(path = "auth", value = "providerServer")
-public interface AuthRemoteService {
+public interface AuthRemoteClient {
 
     @RequestMapping(value = "/findUserByName/{username}", method = RequestMethod.GET)
-    User findUserByName(@PathVariable("username") String username);
+    public User findUserByName(@PathVariable("username") String username);
 
     @RequestMapping(value = "/findRoleByUserId/{userId}", method = RequestMethod.GET)
-    List<Role> findRoleByUserId(@PathVariable("userId") String userId);
+    public List<Role> findRoleByUserId(@PathVariable("userId") String userId);
 
     @RequestMapping(value = "/getPermissions/{userId}", method = RequestMethod.GET)
-    List<PermissionVo> getPermissions(@PathVariable("userId") String userId);
+    public List<PermissionVo> getPermissions(@PathVariable("userId") String userId);
 
 }

@@ -1,4 +1,4 @@
-package com.ms.service.auth;
+package com.ms.service.auth.impl;
 
 import java.util.Calendar;
 import java.util.List;
@@ -18,10 +18,10 @@ import com.ms.api.common.util.UUIDUtil;
 import com.ms.api.model.auth.Role;
 import com.ms.api.model.auth.User;
 import com.ms.api.model.auth.UserRole;
-import com.ms.api.service.auth.UserService;
 import com.ms.mapper.auth.RoleMapper;
 import com.ms.mapper.auth.UserMapper;
 import com.ms.mapper.auth.UserRoleMapper;
+import com.ms.service.auth.UserService;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {

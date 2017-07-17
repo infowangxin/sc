@@ -1,4 +1,4 @@
-package com.ms.service.simple;
+package com.ms.service.simple.impl;
 
 import java.util.Calendar;
 import java.util.List;
@@ -15,10 +15,10 @@ import com.github.pagehelper.PageInfo;
 import com.ms.api.common.constants.Constants;
 import com.ms.api.common.util.UUIDUtil;
 import com.ms.api.model.simple.News;
-import com.ms.api.service.simple.NewsService;
 import com.ms.common.datasource.DataSourceEnum;
 import com.ms.common.datasource.TargetDataSource;
 import com.ms.mapper.simple.NewsMapper;
+import com.ms.service.simple.NewsService;
 
 /** 
  * @Description 新闻接口实现类

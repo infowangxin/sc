@@ -18,8 +18,8 @@
 							<td>${n.title }</td>
 							<td>${n.description }</td>
 							<td>${n.address }</td>
-							<td>${n.newsTime}</td>
-							<td>${n.createTime}</td>
+							<td>${n.newsTime?string('yyyy-MM-dd HH:mm')}</td>
+							<td>${n.createTime?string('yyyy-MM-dd HH:mm')}</td>
 							<td class="text-right text-nowrap">
 								<div class="btn-group ">
 									<button class="btn btn-white btn-sm edit" data-id="${n.id }" data-toggle="modal" data-target="#edit">

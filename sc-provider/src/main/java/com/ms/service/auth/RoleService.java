@@ -1,4 +1,4 @@
-package com.ms.api.service.auth;
+package com.ms.service.auth;
 
 import java.util.List;
 

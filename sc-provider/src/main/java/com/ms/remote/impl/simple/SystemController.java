@@ -1,4 +1,4 @@
-package com.ms.remote.service.simple;
+package com.ms.remote.impl.simple;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

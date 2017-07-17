@@ -1,4 +1,4 @@
-package com.ms.service.auth;
+package com.ms.service.auth.impl;
 
 import java.util.List;
 
@@ -14,10 +14,10 @@ import com.ms.api.common.util.UUIDUtil;
 import com.ms.api.model.auth.Permission;
 import com.ms.api.model.auth.Role;
 import com.ms.api.model.auth.RolePermission;
-import com.ms.api.service.auth.RoleService;
 import com.ms.mapper.auth.PermissionMapper;
 import com.ms.mapper.auth.RoleMapper;
 import com.ms.mapper.auth.RolePermissionMapper;
+import com.ms.service.auth.RoleService;
 
 @Service("roleService")
 public class RoleServiceImpl implements RoleService {
