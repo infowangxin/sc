@@ -3,7 +3,7 @@
 `它是一个基于SpringCloud的分布式服务示例项目、集成有eureka、ribbon、feign组件等，前端页面有集成jsp与freemarker等两种呈现方式`
 
 #### 包含工程有：
-* sc-api：用于放common公共相关类的工程，所有工程都可以引用
+* sc-api：用于放common公共相关类的工程，所有工程都可以引用。
 * sc-consumer-freemarker：client端，即consumer服务消费者，前端采用的是freemarker
 * sc-consumer-jsp：client端，即consumer服务消费者，前端采用的是jsp
 * sc-eureka-server：Netflix Eureka云端负载均衡，一个基于REST的服务，用于定位服务，以实现云端的负载均衡和中间层服务器的故障转移
