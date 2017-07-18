@@ -9,28 +9,18 @@
 		<version>${sc.version}</version>
 	</parent>
 
-	<artifactId>sc-feign</artifactId>
+	<artifactId>sc-consul</artifactId>
 
 	<packaging>jar</packaging>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-
 	<dependencies>
 		<dependency>
-			<groupId>com.wangxin</groupId>
-			<artifactId>sc-api</artifactId>
-			<version>${sc.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-netflix-core</artifactId>
+			<artifactId>spring-cloud-starter-consul-discovery</artifactId>
 		</dependency>
 	</dependencies>
 

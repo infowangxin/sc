@@ -4,12 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.sc</groupId>
+		<groupId>com.wangxin</groupId>
 		<artifactId>sc</artifactId>
 		<version>${sc.version}</version>
 	</parent>
 
-	<groupId>com.ms</groupId>
 	<artifactId>sc-eureka-provider</artifactId>
 
 	<packaging>jar</packaging>
@@ -20,12 +19,12 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.ms</groupId>
+			<groupId>com.wangxin</groupId>
 			<artifactId>sc-api</artifactId>
 			<version>${sc.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.ms</groupId>
+			<groupId>com.wangxin</groupId>
 			<artifactId>sc-feign</artifactId>
 			<version>${sc.version}</version>
 		</dependency>
