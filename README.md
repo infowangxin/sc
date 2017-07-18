@@ -8,7 +8,7 @@
 * sc-eureka-consumer-freemarker：client端，即consumer服务消费者，前端采用的是freemarker。
 * sc-eureka-consumer-jsp：client端，即consumer服务消费者，前端采用的是jsp。
 * sc-eureka-provider：server端，即provider服务提供端，端口是随机分配的，可以启动多个服务对ribbon验证服务负载
-* sc-feign：SpringCloud Netflix Feign，声明的接口
+* sc-feign：SpringCloud Netflix Feign，声明的接口。
 
 #### 示例启动
 * 初始化数据库，将[sc/ddl/mysql_test.sql](ddl/mysql_test.sql)脚本初始化在默认数据库当中
