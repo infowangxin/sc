@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ms.mapper.auth.PermissionMapper">
+<mapper namespace="com.wangxin.mapper.auth.PermissionMapper">
 
-	<resultMap id="permissionMap" type="com.ms.api.model.auth.Permission">
+	<resultMap id="permissionMap" type="com.wangxin.api.model.auth.Permission">
 		<result property="id" column="ID" />
 		<result property="name" column="NAME" />
 		<result property="cssClass" column="CSS_CLASS" />
@@ -15,7 +15,7 @@
 		<result property="parentKey" column="PARENT_KEY" />
 	</resultMap>
 
-	<insert id="insert" parameterType="com.ms.api.model.auth.Permission">
+	<insert id="insert" parameterType="com.wangxin.api.model.auth.Permission">
 		INSERT INTO T_SYS_PERMISSION(ID , NAME , CSS_CLASS, SKEY , HIDE , URL, LEV, SORT , PARENT_KEY) 
 		VALUES(#{id} , #{name} , #{cssClass} , #{key} , ${hide} , #{url} , ${lev} , ${sort} , #{parentKey})
 	</insert>
@@ -83,7 +83,7 @@
 		<include refid="where_xxx" />
 	</select>
 
-	<update id="update" parameterType="com.ms.api.model.auth.Permission">
+	<update id="update" parameterType="com.wangxin.api.model.auth.Permission">
 		UPDATE T_SYS_PERMISSION
 		<set>
 			<if test="hide != null">

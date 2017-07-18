@@ -14,7 +14,7 @@
 * 初始化数据库，将[sc/ddl/mysql_test.sql](ddl/mysql_test.sql)脚本初始化在默认数据库当中
 
 * 按顺序依次启动项目工程： sc-eureka、sc-eureka-provider、sc-eureka-consumer-freemarker、sc-eureka-consumer-jsp
-` 启动方式，运行： com.ms.Application.main(String[]) 方法`
+` 启动方式，运行： com.wangxin.Application.main(String[]) 方法`
 
 * 访问 sc-eureka
 `浏览器访问 `[http://localhost:1111](http://localhost:1111) `，Application表格当中可以看到注册上来的server与client，表明启动都成功了`
