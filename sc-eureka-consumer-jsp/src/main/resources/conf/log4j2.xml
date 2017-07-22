@@ -21,7 +21,7 @@
 		<!-- 3rdparty Loggers -->
 		<logger name="com.wangxin" level="debug" />
 		<logger name="org.springframework" level="info" />
-		<logger name="freemarker" level="debug" />
+		<logger name="org.hibernate" level="info" />
 		<logger name="org.fasterxml" level="info" />
 		<logger name="com.netflix" level="info" />
 		<logger name="javax.el" level="info" />

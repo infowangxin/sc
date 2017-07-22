@@ -12,7 +12,7 @@
 	<appenders>
 		<!-- 定义控制台输出 -->
 		<Console name="Console" target="SYSTEM_OUT" follow="true">
-			<PatternLayout pattern="%d{HH:mm:ss,SSS} %-8r [%-6p] %c.%M(%F:%L) - %m%n" />
+			<PatternLayout pattern="%-8d{HH:mm:ss,SSS} %-8r [%-6p] %c.%M(%F:%L) - %m%n" />
 			<!-- <PatternLayout pattern="%sn %d{yy/MM/dd HH:mm:ss,SSS} %r [%-6p] [%t] %c.%M(%F:%L) - %m%n" /> -->
 		</Console>
 	</appenders>
@@ -22,6 +22,7 @@
 		<logger name="com.wangxin" level="debug" />
 		<logger name="org.springframework" level="info" />
 		<logger name="freemarker" level="info" />
+		<logger name="org.hibernate" level="info" />
 		<logger name="org.fasterxml" level="info" />
 		<logger name="com.netflix" level="info" />
 		<logger name="javax.el" level="info" />
