@@ -26,6 +26,7 @@ public class DynamicDataSourceContextHolder {
      * @param dataSourceId
      * @return  
      */
+    @SuppressWarnings("unlikely-arg-type")
     public static boolean containsDataSource(String dataSourceId) {
         if(contextHolder.equals(dataSourceId))
             return true;
