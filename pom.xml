@@ -17,7 +17,6 @@
 
 	<modules>
 		<module>sc-api</module>
-		<module>sc-consul</module>
 		<module>sc-eureka</module>
 		<module>sc-eureka-consumer-freemarker</module>
 		<module>sc-eureka-consumer-jsp</module>

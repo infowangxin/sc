@@ -9,8 +9,4 @@ eureka:
       defaultZone: 'http://localhost:${server.port}/eureka/'
 
 logging:
-  level:
-    com.wangxin: 'debug'
-    org.springframework: 'INFO'
-    com.netflix.eureka: 'OFF'
-    com.netflix.discovery: 'OFF'
+  config: 'classpath:conf/log4j2.xml'
