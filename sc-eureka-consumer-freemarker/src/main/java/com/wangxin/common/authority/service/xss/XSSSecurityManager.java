@@ -1,21 +1,22 @@
 package com.wangxin.common.authority.service.xss;
 
-import java.io.InputStream;
-import java.util.*;
-import java.util.regex.Pattern;
-
-import javax.servlet.FilterConfig;
-
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
 
-/**
- * @author 王鑫
+import javax.servlet.FilterConfig;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.*;
+import java.util.regex.Pattern;
+
+/** 
  * @Description 安全过滤配置管理类
- * @date Mar 24, 2017 7:45:22 PM
+ * @author 王鑫 
+ * @date Mar 24, 2017 7:45:22 PM  
  */
 @SuppressWarnings("all")
 public class XSSSecurityManager {
@@ -29,8 +30,6 @@ public class XSSSecurityManager {
 
     /**
      * 特殊字符匹配
-
-
      */
     private static Pattern XSS_PATTERN;
 
@@ -48,25 +47,24 @@ public class XSSSecurityManager {
     /**
      * 初始化
      *
-     * @param config 配置参数
+     * @param config
+     *            配置参数
      */
-    @SuppressWarnings("rawtypes")
     public static void init(FilterConfig config) {
 
         log.debug("XSSSecurityManager init(FilterConfig config) begin");
         // 初始化过滤配置文件
-        String xssPath = config.getServletContext().getRealPath("/") + config.getInitParameter("securityconfig");
-        InputStream is = config.getServletContext().getResourceAsStream("conf/xss_security_config.xml");
-        log.debug(" xss_security_config.xml path={} ", xssPath);
-
+        org.springframework.core.io.Resource res = new ClassPathResource(config.getInitParameter("securityconfig"));
+        log.debug("xss classpath={}", config.getInitParameter("securityconfig"));
         // 初始化安全过滤配置
         try {
-            if (initConfig(is)) {
+            if (initConfig(res.getInputStream())) {
                 // 生成匹配器
                 XSS_PATTERN = Pattern.compile(REGEX);
-
-                for (Map matchMap : checkUrlMatcherList) {
-                    log.debug("特殊URL过滤匹配规则" + matchMap);
+                if (log.isDebugEnabled()) {
+                    for (Map matchMap : checkUrlMatcherList) {
+                        log.debug("特殊URL过滤匹配规则" + matchMap);
+                    }
                 }
 
             } else {
@@ -76,6 +74,9 @@ public class XSSSecurityManager {
         } catch (DocumentException e) {
             log.debug("安全过滤配置文件xss_security_config.xml加载异常");
             e.printStackTrace();
+        } catch (IOException e) {
+            log.debug("安全过滤配置文件xss_security_config.xml加载异常");
+            e.printStackTrace();
         }
         log.debug("XSSSecurityManager init(FilterConfig config) end");
     }
@@ -83,15 +84,14 @@ public class XSSSecurityManager {
     /**
      * 读取安全审核配置文件xss_security_config.xml 设置XSSSecurityConfig配置信息
      *
-     * @param inputStream 过滤配置文件
+     * @param path
+     *            过滤配置文件路径
      * @return ture or false
      * @throws DocumentException
      */
-    @SuppressWarnings("unchecked")
-    public static boolean initConfig(InputStream inputStream) throws DocumentException {
-
-        log.debug("XSSSecurityManager.initConfig(String path) begin");
-        Element superElement = new SAXReader().read(inputStream).getRootElement();
+    public static boolean initConfig(InputStream in) throws DocumentException {
+        log.debug("XSSSecurityManager.initConfig(InputStream in) begin");
+        Element superElement = new SAXReader().read(in).getRootElement();
         XSSSecurityConfig.IS_CHECK_HEADER = new Boolean(getEleValue(superElement, XSSSecurityConstants.IS_CHECK_HEADER));
         XSSSecurityConfig.IS_CHECK_PARAMETER = new Boolean(getEleValue(superElement, XSSSecurityConstants.IS_CHECK_PARAMETER));
         XSSSecurityConfig.IS_CHECK_URL = new Boolean(getEleValue(superElement, XSSSecurityConstants.IS_CHECK_URL));
@@ -176,9 +176,11 @@ public class XSSSecurityManager {
 
     /**
      * 从目标element中获取指定标签信息，若找不到该标签，记录错误日志
-     *
-     * @param element 目标节点
-     * @param tagName 制定标签
+     * 
+     * @param element
+     *            目标节点
+     * @param tagName
+     *            制定标签
      * @return
      */
     private static String getEleValue(Element element, String tagName) {
@@ -204,7 +206,7 @@ public class XSSSecurityManager {
 
     /**
      * 匹配字符是否含特殊字符
-     *
+     * 
      * @param text
      * @return
      */
@@ -227,7 +229,7 @@ public class XSSSecurityManager {
 
     /**
      * 判断是否为空串，建议放到某个工具类中
-     *
+     * 
      * @param value
      * @return
      */

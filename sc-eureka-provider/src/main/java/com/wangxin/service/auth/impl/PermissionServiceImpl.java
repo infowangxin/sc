@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.wangxin.mapper.auth.PermissionMapper;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import com.wangxin.api.common.exception.BusinessException;
 import com.wangxin.api.common.util.UUIDUtil;
 import com.wangxin.api.model.auth.Permission;
 import com.wangxin.api.model.auth.PermissionVo;
-import com.wangxin.mapper.auth.PermissionMapper;
 import com.wangxin.service.auth.PermissionService;
 
 @Service("permissionService")
@@ -24,6 +24,7 @@ public class PermissionServiceImpl implements PermissionService {
 
     @Autowired
     private PermissionMapper permissionMapper;
+
 
     private PermissionVo convertToVo(Permission per) {
         PermissionVo pvo = new PermissionVo();
@@ -119,11 +120,11 @@ public class PermissionServiceImpl implements PermissionService {
     @Override
     public void addPermission(Permission permission) {
         if (permission == null || StringUtils.isBlank(permission.getKey()) || StringUtils.isBlank(permission.getName())) {
-            throw new BusinessException("permission-fail","## 创建菜单出错；菜单项数据不完整，无法进行创建。");
+            throw new BusinessException("permission-fail", "## 创建菜单出错；菜单项数据不完整，无法进行创建。");
         }
         Permission p = permissionMapper.findPermissionByKey(permission.getKey());
-        if(p!=null)
-            throw new BusinessException("permission-fail","#创建菜单出错;菜单Key已经存在,key="+permission.getKey());
+        if (p != null)
+            throw new BusinessException("permission-fail", "#创建菜单出错;菜单Key已经存在,key=" + permission.getKey());
         permission.setId(UUIDUtil.getRandom32PK());
         permissionMapper.insert(permission);
     }

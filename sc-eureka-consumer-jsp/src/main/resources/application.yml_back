@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: 'consumer_jsp'
+  port: '3000'
+  mvc:
+    view:
+      prefix: '/WEB-INF/view/'
+      suffix: '.jsp'
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: 'http://localhost:1111/eureka/'
+
+feign:
+  httpclient:
+    enabled: 'true'
+
+provider:
+  ribbon:
+    NFLoadBalancerRuleClassName: 'com.netflix.loadbalancer.RandomRule'
+
+logging:
+  config: 'classpath:conf/log4j2.xml'

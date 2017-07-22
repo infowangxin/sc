@@ -1,0 +1,108 @@
+spring:
+  application:
+    name: 'provider'
+
+server:
+  port: '0'
+  #port: '2001'
+  #port: '${random.int[2000,2999]}'
+#设置port: 0，当应用启动的时候会自动的分配一个随机端口，但是该方式在注册到Eureka的时候会一个问题：所有实例都使用了同样的实例名（如：Lenovo-zhaiyc:hello-service:0）
+#这导致只出现了一个实例。所以，我们还需要修改实例ID的定义，让每个实例的ID不同，比如使用随机数来配置实例ID：
+eureka:
+  instance:
+    instanceId: '${spring.application.name}:${random.int}'
+  client:
+    serviceUrl:
+      defaultZone: 'http://localhost:1111/eureka/'
+
+# 日志
+logging:
+  config: 'classpath:conf/log4j2.xml'
+
+# 数据源
+# url: 数据库URL
+# username: 数据库账号
+# password: 数据库密码
+# driverClassName: 数据库驱动类
+# initialSize: 初始化时建立物理连接的个数
+# maxActive: 最大连接数
+# minIdle: 最小连接数
+# maxWait: 获取连接时最大等待时间，单位毫秒
+# useUnfairLock: 配置了maxWait之后，缺省启用公平锁，并发效率会有所下降，所以使用非公平锁
+# validationQuery: 检测连接是否有效SQL
+# testOnBorrow: 申请连接时执行validationQuery检测连接是否有效，设置为true会影响性能
+# testOnReturn: 退还连接时执行validationQuery检测连接是否有效，设置为true会影响性能
+# testWhileIdle: 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效
+# timeBetweenEvictionRunsMillis: 两个含义：1、Destroy线程会检测连接的间隔时间 2、testWhileIdle的判断依据
+# minEvictableIdleTimeMillis: 一个连接在池中最小生存的时间，单位是毫秒
+# filters: 属性类型是字符串，通过别名的方式配置扩展插件，常用的插件有：监控统计用的filter:stat 日志用的filter:log4j 防御sql注入的filter:wall
+
+# 数据源公共参数
+druid:
+  datasource:
+    initialSize: '5'
+    maxActive: '10'
+    minIdle: '5'
+    maxWait: '60000'
+    useUnfairLock: 'true'
+    testOnBorrow: 'false'
+    testOnReturn: 'false'
+    testWhileIdle: 'true'
+    timeBetweenEvictionRunsMillis: '60000'
+    minEvictableIdleTimeMillis: '300000'
+    filters: 'stat,wall,log4j'
+#   'filters: stat,log4j'
+#filters：如果是SQLite，不能配置wall
+
+# 默认主数据源
+    url: 'jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=false'
+    driverClassName: 'com.mysql.jdbc.Driver'
+    username: 'root'
+    password: 'root'
+    validationQuery: 'SELECT 1'
+#   url: 'jdbc:sqlite:/Users/vincent/workspace/examples/springboot-freemarker/db/demo.sqlite'
+#   driverClassName: 'org.sqlite.JDBC'
+#   username:
+#   password:
+#   validationQuery: 'SELECT count(name) FROM sqlite_master'
+
+# 数据库1
+custom:
+  datasource:
+    names: 'db1,db2'
+    db1:
+      url: 'jdbc:mysql://127.0.0.1:3306/demo?useUnicode=true&characterEncoding=UTF-8&useSSL=false'
+      driverClassName: 'com.mysql.jdbc.Driver'
+      username: 'root'
+      password: 'root'
+      validationQuery: 'SELECT 1'
+#     url: 'jdbc:sqlite:/Users/vincent/workspace/examples/springboot-freemarker/db/demo1.sqlite'
+#     driverClassName: 'org.sqlite.JDBC'
+#     username: 'root'
+#     password: 'root'
+#     validationQuery: 'SELECT count(name) FROM sqlite_master'
+# 数据库2
+    db2:
+      url: 'jdbc:mysql://127.0.0.1:3306/auth?useUnicode=true&characterEncoding=UTF-8&useSSL=false'
+      driverClassName: 'com.mysql.jdbc.Driver'
+      username: 'root'
+      password: 'root'
+      validationQuery: 'SELECT 1'
+#     url: 'jdbc:sqlite:/Users/vincent/workspace/examples/springboot-freemarker/db/demo2.sqlite'
+#     driverClassName: 'org.sqlite.JDBC'
+#     username:
+#     password:
+#     validationQuery: 'SELECT count(name) FROM sqlite_master'
+
+## mybatis 配置
+mybatis:
+  mapperLocations: 'classpath*:mapper/**/*.xml'
+  typeAliasesPackage: 'com.wangxin.api.model'
+
+# mybatis 分页插件
+#pagehelper.helperDialect: sqlite
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql

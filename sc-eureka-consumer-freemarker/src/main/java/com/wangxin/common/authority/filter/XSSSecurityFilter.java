@@ -22,10 +22,17 @@ import java.util.Set;
  * @author 王鑫 
  * @date Mar 24, 2017 7:43:01 PM  
  */
-@WebFilter(urlPatterns = "/*", filterName = "XSSCheck", initParams = { @WebInitParam(name = "securityconfig", value = "WEB-INF/conf/xss_security_config.xml") })
+@WebFilter(urlPatterns = "/*", filterName = "XSSCheck", initParams = { @WebInitParam(name = "securityconfig", value = "conf/xss_security_config.xml") })
 public class XSSSecurityFilter implements Filter {
 
     private static final Logger log = LoggerFactory.getLogger(XSSSecurityFilter.class);
+
+    /**
+     * 初始化操作
+     */
+    public void init(FilterConfig filterConfig) throws ServletException {
+        XSSSecurityManager.init(filterConfig);
+    }
 
     /**
      * 销毁操作
@@ -55,12 +62,11 @@ public class XSSSecurityFilter implements Filter {
                 String paramStr = "";
                 Map<String, String[]> submitParams = httpRequest.getParameterMap();
                 Set<String> submitNames = submitParams.keySet();
+                String[] submitValues = null;
                 for (String submitName : submitNames) {
-                    String[] submitValues = submitParams.get(submitName);
-
-                    for (String submitValue : (String[]) submitValues) {
+                    submitValues = submitParams.get(submitName);
+                    for (String submitValue : (String[]) submitValues)
                         paramStr = paramStr + submitValue;
-                    }
                 }
 
                 log.debug("XSS Security Filter RequestURL:" + httpRequest.getRequestURL().toString());
@@ -69,21 +75,14 @@ public class XSSSecurityFilter implements Filter {
             }
             // 是否中断操作
             if (XSSSecurityConfig.IS_CHAIN) {
-                // request.setAttribute(MessageStyle.StyleKey, MessageStyle.ALERT_AND_BACK);
-                // request.setAttribute(ExceptionWrapper.Message, LocaleHolder.getMessage("gap.authority.illegal_characters"));
-                request.getRequestDispatcher(XSSSecurityConstants.FILTER_ERROR_PAGE).forward(request, response);
+                request.setAttribute("err", "您输入的参数有非法字符，请输入正确的参数！");
+                request.setAttribute("pageUrl",httpRequest.getRequestURI());
+                request.getRequestDispatcher(request.getServletContext().getContextPath() + XSSSecurityConstants.FILTER_ERROR_PAGE).forward(request, response);
                 return;
             }
 
         }
         chain.doFilter(request, response);
-    }
-
-    /**
-     * 初始化操作
-     */
-    public void init(FilterConfig filterConfig) throws ServletException {
-        XSSSecurityManager.init(filterConfig);
     }
 
     /**
@@ -93,7 +92,7 @@ public class XSSSecurityFilter implements Filter {
      *            ServletRequest
      * @param response
      *            ServletResponse
-     * @throws javax.servlet.ServletException
+     * @throws ServletException
      */
     private void checkRequestResponse(ServletRequest request, ServletResponse response) throws ServletException {
         if (!(request instanceof HttpServletRequest))

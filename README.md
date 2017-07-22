@@ -7,7 +7,7 @@
 * sc-eureka：Netflix Eureka云端负载均衡，一个基于REST的服务，用于定位服务，以实现云端的负载均衡和中间层服务器的故障转移。
 * sc-eureka-consumer-freemarker：client端，即consumer服务消费者，前端采用的是freemarker。
 * sc-eureka-consumer-jsp：client端，即consumer服务消费者，前端采用的是jsp。
-* sc-eureka-provider：server端，即provider服务提供端，端口是随机分配的，可以启动多个服务对ribbon验证服务负载
+* sc-eureka-provider：server端，即provider服务提供端，端口是随机分配的，可以启动多个服务对ribbon验证服务负载.
 * sc-feign：SpringCloud Netflix Feign，声明的接口。
 
 #### 示例启动

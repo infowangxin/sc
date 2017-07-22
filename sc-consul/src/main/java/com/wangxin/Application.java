@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class Application {
 
-    private static final Logger log = LoggerFactory.getLogger(Application.class);
+    private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
     @RequestMapping("/home")
     public Object home() {
-        log.debug("# 来自于Consul");
+        logger.debug("# 来自于Consul");
         return "来自于Consul";
     }
 

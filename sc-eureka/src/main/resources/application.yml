@@ -1,0 +1,16 @@
+server:
+  port: '1111'
+
+eureka:
+  client:
+    registerWithEureka: 'false'
+    fetchRegistry: 'false'
+    serviceUrl:
+      defaultZone: 'http://localhost:${server.port}/eureka/'
+
+logging:
+  level:
+    com.wangxin: 'debug'
+    org.springframework: 'INFO'
+    com.netflix.eureka: 'OFF'
+    com.netflix.discovery: 'OFF'

@@ -1,0 +1,11 @@
+#spring.cloud.consul.host=dev.consul.qhgrain.com
+spring.cloud.consul.host=localhost
+#spring.cloud.consul.port=80
+spring.cloud.consul.port=1112
+spring.cloud.consul.enabled=true
+spring.cloud.consul.config.enabled=false
+spring.cloud.consul.discovery.enabled=true
+#register is true by default, if it's true, it will register the service
+spring.cloud.consul.discovery.register=false
+#refer to HystrixCommandProperties
+execution.isolation.thread.interruptOnTimeout=50000

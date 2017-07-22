@@ -27,8 +27,6 @@ public class XSSCheckFilter implements Filter {
 
     private static Logger log = LoggerFactory.getLogger(XSSCheckFilter.class);
 
-    @SuppressWarnings("unused")
-    private FilterConfig config;
     // 出错跳转的目的地
     private static String errorPath;
     // 不进行拦截的url
@@ -101,7 +99,6 @@ public class XSSCheckFilter implements Filter {
     }
 
     public void init(FilterConfig config) throws ServletException {
-        this.config = config;
         try {
             errorPath = XSS_ERROR_PATH;
             String excludePath = XSS_EXCLUDE_PATHS;
