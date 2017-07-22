@@ -56,12 +56,11 @@ public class XSSSecurityManager {
         log.debug("XSSSecurityManager init(FilterConfig config) begin");
         // 初始化过滤配置文件
         String xssPath = config.getServletContext().getRealPath("/") + config.getInitParameter("securityconfig");
-        InputStream is = config.getServletContext().getResourceAsStream("conf/xss_security_config.xml");
         log.debug(" xss_security_config.xml path={} ", xssPath);
 
         // 初始化安全过滤配置
         try {
-            if (initConfig(is)) {
+            if (initConfig(xssPath)) {
                 // 生成匹配器
                 XSS_PATTERN = Pattern.compile(REGEX);
 
@@ -83,15 +82,15 @@ public class XSSSecurityManager {
     /**
      * 读取安全审核配置文件xss_security_config.xml 设置XSSSecurityConfig配置信息
      *
-     * @param inputStream 过滤配置文件
+     * @param path 过滤配置文件
      * @return ture or false
      * @throws DocumentException
      */
     @SuppressWarnings("unchecked")
-    public static boolean initConfig(InputStream inputStream) throws DocumentException {
+    public static boolean initConfig(String path) throws DocumentException {
 
         log.debug("XSSSecurityManager.initConfig(String path) begin");
-        Element superElement = new SAXReader().read(inputStream).getRootElement();
+        Element superElement = new SAXReader().read(path).getRootElement();
         XSSSecurityConfig.IS_CHECK_HEADER = new Boolean(getEleValue(superElement, XSSSecurityConstants.IS_CHECK_HEADER));
         XSSSecurityConfig.IS_CHECK_PARAMETER = new Boolean(getEleValue(superElement, XSSSecurityConstants.IS_CHECK_PARAMETER));
         XSSSecurityConfig.IS_CHECK_URL = new Boolean(getEleValue(superElement, XSSSecurityConstants.IS_CHECK_URL));

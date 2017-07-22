@@ -19,10 +19,9 @@
 
 	<loggers>
 		<!-- 3rdparty Loggers -->
-		<logger name="com.sc" level="debug" />
+		<logger name="com.wangxin" level="debug" />
 		<logger name="org.springframework" level="info" />
 		<logger name="freemarker" level="info" />
-		<logger name="org.jboss" level="info" />
 		<logger name="org.fasterxml" level="info" />
 		<logger name="com.netflix" level="info" />
 		<logger name="javax.el" level="info" />

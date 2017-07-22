@@ -4,7 +4,7 @@ spring:
   port: '3000'
   mvc:
     view:
-      prefix: '/WEB-INF/view/'
+      prefix: '/WEB-INF/views/'
       suffix: '.jsp'
 
 eureka:
