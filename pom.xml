@@ -20,6 +20,7 @@
 		<module>sc-eureka</module>
 		<module>sc-eureka-consumer-freemarker</module>
 		<module>sc-eureka-consumer-jsp</module>
+		<module>sc-eureka-consumer-thymeleaf</module>
 		<module>sc-eureka-provider</module>
 		<module>sc-feign</module>
 	</modules>
