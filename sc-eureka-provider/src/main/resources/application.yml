@@ -1,6 +1,20 @@
 spring:
   application:
     name: 'provider'
+  cloud:
+    config:
+      server:
+        git:
+          uri: 'https://github.com/wangxinforme/sc/'
+          search-paths: 'sc-config'
+          #username: 'wangxinforme@163.com'
+          #password: 'Ibelieve5'
+          #basedir: 'target/config'
+    #uri: 'http://localhost:8888'
+
+management:
+  security:
+    enabled: 'false'
 
 server:
   port: '0'

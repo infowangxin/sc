@@ -1,3 +1,7 @@
+spring:
+  application:
+    name: 'consumer_freemarker'
+
 server:
   port: '4000'
   application:
