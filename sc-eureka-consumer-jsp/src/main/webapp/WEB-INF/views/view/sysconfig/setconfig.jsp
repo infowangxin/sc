@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,7 +38,7 @@
 				<div class="col-sm-4">
 					<h2>屋瓴账号管理</h2>
 					<ol class="breadcrumb">
-						<li><a href="${ctx}/static/index.html">管理首页</a></li>
+						<li><a href="${ctx}/index">管理首页</a></li>
 						<li class="active">屋瓴账号管理</li>
 
 					</ol>

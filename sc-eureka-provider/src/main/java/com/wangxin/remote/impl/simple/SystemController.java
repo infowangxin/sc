@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,14 +20,9 @@ public class SystemController {
     @Value("${from:local}")
     private String from;
 
-    @GetMapping(value = {"/", "/index"})
+    @GetMapping(value = { "/", "/index" })
     public String index() {
-        ServiceInstance instance = client.getLocalServiceInstance();
-        String result = "来自于服务端<br/>server_id:"
-                + instance.getServiceId() + "<br/>host:"
-                + instance.getHost() + "<br/>port:"
-                + instance.getPort() + "<br/>"
-                + from;
+        String result = "from:" + from;
         logger.info(result);
         return result;
     }
@@ -37,11 +30,7 @@ public class SystemController {
     @GetMapping("/info")
     public String info() {
         ServiceInstance instance = client.getLocalServiceInstance();
-        String result = "来自于服务端<br/>server_id:"
-                + instance.getServiceId() + "<br/>host:"
-                + instance.getHost() + "<br/>port:"
-                + instance.getPort() + "<br/>"
-                + from;
+        String result = "来自于服务端<br/>server_id:" + instance.getServiceId() + "<br/>host:" + instance.getHost() + "<br/>port:" + instance.getPort() + "<br/>" + from;
         logger.info(result);
         return result;
     }

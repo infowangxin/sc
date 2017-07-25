@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,18 +18,20 @@ public class MainController {
 
     private static final Logger log = LoggerFactory.getLogger(MainController.class);
 
-    @RequestMapping(value = { "/", "index" })
+    @GetMapping(value = { "/", "index" })
     String home() {
         log.info("# 进入默认首页");
         return "redirect:/news/list";
     }
 
-    @RequestMapping(value = "leftnav", method = RequestMethod.GET)
+    @GetMapping("leftnav")
     String leftnav() {
-        return "leftnav";
+        log.debug("# leftnav");
+        // return "leftnav";
+        return "leftnav_static";
     }
 
-    @RequestMapping(value = "topnav", method = RequestMethod.GET)
+    @GetMapping("topnav")
     String topnav() {
         return "topnav";
     }

@@ -1,0 +1,57 @@
+<div class="sidebar-scroll">
+	<div class="logo">
+		<a th:href="@{/index}"><img th:src="@{/static/images/logo_icon.png}" alt="">示例系统</a>
+	</div>
+	<div class="sidebar-collapse">
+		<div class="nav-header" id="side-head">
+			<div class="dropdown profile-element text-center">
+				<span><img alt="image" class="img-circle " th:src="@{/static/img/profile_small.jpg}" /></span> <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Jack</strong></span>
+						<span class="text-muted text-xs block">用户设置<b class="caret"></b></span>
+				</span> </a>
+				<ul class="dropdown-menu animated fadeInRight m-t-xs">
+					<li><a href="profile.html">Profile</a></li>
+					<li><a href="contacts.html">Contacts</a></li>
+					<li><a href="mailbox.html">Mailbox</a></li>
+					<li class="divider"></li>
+					<li><a th:href="@{/logout}">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+		<ul class="nav metismenu" id="side-menu" >
+			<li th:class="${oneStat.index==1}?'active':''"  th:each="one:${session.permission_session}">
+				<!-- 只是单纯的一级菜单，没有子菜单 -->
+				<a th:href="${#strings.isEmpty(one.url)}?'javascript:void(0)':${application.ctx}+'/'+${one.url}" th:if="${#lists.isEmpty(one.children)}">
+					<i th:class="${one.cssClass}+' fa'"></i> 
+					<span class="nav-label" th:text="${one.name}"></span>
+				</a>
+				
+				<!-- 一级菜单，有子菜单 -->
+				<a th:href="${#strings.isEmpty(one.url)}?'javascript:void(0)':${application.ctx}+'/'+${one.url}" th:if="${not #lists.isEmpty(one.children)}">
+					<i th:class="${one.cssClass}+' fa'"></i> 
+					<span class="nav-label" th:text="${one.name}"></span>
+					<span class="fa arrow"></span>
+				</a>
+				
+				<!-- 迭代显示子菜单 -->
+				<ul class="nav nav-second-level collapse" th:if="${not #lists.isEmpty(one.children)}" th:each="two:${one.children}">
+					<li>
+						<a th:href="${#strings.isEmpty(two.url)}?'javascript:void(0)':${application.ctx}+'/'+${two.url}">
+							<i th:class="${two.cssClass}+' fa'"></i>
+							<font th:text="${two.name}"></font>
+						</a>
+						<ul class="nav nav-third-level" th:if="${not #lists.isEmpty(two.children)}" th:each="three:${two.children}">
+							<li>
+								<a th:href="${application.ctx}+'/'+${three.url}">
+									<i th:class="${three.cssClass}+' fa'"></i>
+									<font th:text="${three.name}"></font>
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li class="landing_link"><a target="_blank" href="landing.html"><i class="fa fa-star"></i> <span class="nav-label">系统更新</span> <span class="label label-warning pull-right">NEW</span></a></li>
+			<li class="special_link"><a href="package.html"><i class="fa fa-database"></i> <span class="nav-label">购买服务</span></a></li>
+		</ul>
+	</div>
+</div>

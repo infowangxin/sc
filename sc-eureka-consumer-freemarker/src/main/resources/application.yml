@@ -3,7 +3,7 @@ spring:
     name: 'consumer_freemarker'
 
 server:
-  port: '4000'
+  port: '3000'
   application:
     name: 'consumer_freemarker'
   freemarker:

@@ -24,7 +24,8 @@
 		<logger name="freemarker" level="info" />
 		<logger name="org.hibernate" level="info" />
 		<logger name="org.fasterxml" level="info" />
-		<logger name="com.netflix" level="info" />
+		<logger name="com.netflix" level="error" />
+		<logger name="com.netflix.eureka.registry.AbstractInstanceRegistry" level="error" />
 		<logger name="javax.el" level="info" />
 		<logger name="org.apache" level="info" />
 

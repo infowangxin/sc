@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <div class="ibox-content">
 	<div class="table-responsive ">
 		<table class="table table-centerbody table-striped table-condensed text-nowrap" id="editable-sample">

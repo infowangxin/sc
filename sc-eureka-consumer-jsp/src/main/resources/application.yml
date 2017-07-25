@@ -1,12 +1,13 @@
 spring:
   application:
     name: 'consumer_jsp'
-  port: '3000'
   mvc:
     view:
       prefix: '/WEB-INF/views/'
       suffix: '.jsp'
-
+server:
+  port: '4000'
+  
 eureka:
   client:
     serviceUrl:

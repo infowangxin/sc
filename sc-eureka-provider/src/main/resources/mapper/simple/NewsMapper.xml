@@ -56,7 +56,7 @@
 		<where>
 			<if test="keywords != null and keywords != ''"> title like '%${keywords}%'</if>
 		</where>
-		order by create_time desc
+		order by create_time asc
 	</select>
 
 	<update id="update" parameterType="com.wangxin.api.model.simple.News">

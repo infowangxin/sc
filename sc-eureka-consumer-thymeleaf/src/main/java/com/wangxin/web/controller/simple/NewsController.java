@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
-import com.wangxin.remote.simple.NewsRemoteClient;
 import com.wangxin.api.model.simple.News;
+import com.wangxin.remote.simple.NewsRemoteClient;
 
 /**
  * @Description 新闻示例

@@ -1,26 +1,22 @@
 package com.wangxin.common.shiro.freemarker;
 
-import java.io.IOException;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnNotWebApplication;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
+import com.jagregory.shiro.freemarker.ShiroTags;
 
-import freemarker.template.TemplateException;
+import freemarker.template.Configuration;
 
-@Configuration
-@ConditionalOnNotWebApplication
-public class ShiroTagFreeMarkerConfigurer extends FreeMarkerConfigurer {
-    
-   private static final Logger log = LoggerFactory.getLogger(ShiroTagFreeMarkerConfigurer.class);
- 
+@Component
+public class ShiroTagFreeMarkerConfigurer implements InitializingBean {
+
+    @Autowired
+    private Configuration configuration;
+
     @Override
-    public void afterPropertiesSet() throws IOException, TemplateException {
-        log.info("# 激活shiro标签");
-        super.afterPropertiesSet();
-        this.getConfiguration().setSharedVariable("shiro", new ShiroTags());
+    public void afterPropertiesSet() throws Exception {
+        // 加上这句后，可以在页面上使用shiro标签
+        configuration.setSharedVariable("shiro", new ShiroTags());
     }
-     
 }
