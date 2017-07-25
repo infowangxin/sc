@@ -1,6 +1,6 @@
 # sc 介绍 #
 
-`它是一个基于SpringCloud的分布式服务示例项目、集成有eureka、ribbon、feign组件等，前端页面有集成jsp与freemarker等两种呈现方式`
+`它是一个基于SpringCloud的分布式服务示例项目、集成有eureka、ribbon、feign组件等，消费端有JSP、freemarker、thymeleaf三个版本`
 
 #### 包含工程有：
 * sc-api：用于放common公共相关类的工程，所有工程都可以引用。

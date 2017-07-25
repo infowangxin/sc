@@ -1,1 +1,1 @@
-from: 'provider test config'
+provider.from: 'provider test config'

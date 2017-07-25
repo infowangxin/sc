@@ -1,1 +1,1 @@
-from: 'provider dev config'
+provider.from: 'provider dev config'
