@@ -17,7 +17,7 @@ public class SystemController {
     @Autowired
     private DiscoveryClient client;
 
-    @Value("${provider.from:local}")
+    @Value("${provider.from}")
     private String from;
 
     @GetMapping(value = { "/", "/index" })
