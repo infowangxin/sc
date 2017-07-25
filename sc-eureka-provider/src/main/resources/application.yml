@@ -6,9 +6,9 @@ spring:
       server:
         git:
           uri: 'https://github.com/wangxinforme/sc/'
-          search-paths: 'sc-config'
-          #username: 'wangxinforme@163.com'
-          #password: 'Ibelieve5'
+          search-paths: 'provider'
+          #username: 
+          #password: 
           #basedir: 'target/config'
     #uri: 'http://localhost:8888'
 
