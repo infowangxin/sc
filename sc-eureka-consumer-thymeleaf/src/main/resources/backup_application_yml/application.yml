@@ -9,11 +9,6 @@ spring:
     cache: false
     encoding: UTF-8
     mode: LEGACYHTML5
-  cloud:
-    name: provider
-    profile: dev
-    uri: http://localhost:8001/
-    label: master
     
 eureka:
   client:

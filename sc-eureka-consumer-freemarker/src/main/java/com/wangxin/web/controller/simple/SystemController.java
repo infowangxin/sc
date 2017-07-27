@@ -17,8 +17,8 @@ public class SystemController {
     @Autowired
     private DiscoveryClient client;
 
-    @RequestMapping(value = "/info", method = RequestMethod.GET)
-    public String info() {
+    @RequestMapping(value = { "info", "msg" }, method = RequestMethod.GET)
+    public String msg() {
         ServiceInstance instance = client.getLocalServiceInstance();
         String result = "来自于客户端<br/>server_id:" + instance.getServiceId() + "<br/>host:" + instance.getHost() + "<br/>port:" + instance.getPort();
         logger.info(result);
