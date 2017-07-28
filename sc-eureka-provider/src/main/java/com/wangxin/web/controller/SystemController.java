@@ -1,4 +1,4 @@
-package com.wangxin.remote.impl.simple;
+package com.wangxin.web.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +10,8 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import springfox.documentation.annotations.ApiIgnore;
 
 @RefreshScope
 @RestController
@@ -25,7 +27,7 @@ public class SystemController {
 
     // @Autowired
     // private ProviderProperties providerProperties;
-
+    @ApiIgnore
     @RequestMapping(value = { "/", "/msg" }, method = RequestMethod.GET)
     public String msg() {
         ServiceInstance instance = client.getLocalServiceInstance();

@@ -6,29 +6,32 @@
 	<parent>
 		<groupId>com.wangxin</groupId>
 		<artifactId>sc</artifactId>
-		<version>${sc.version}</version>
+		<version>1.0</version>
 	</parent>
 
 	<artifactId>sc-eureka-consumer-freemarker</artifactId>
 
 	<packaging>jar</packaging>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-
 	<dependencies>
+
+		<!-- sc -->
 		<dependency>
 			<groupId>com.wangxin</groupId>
 			<artifactId>sc-api</artifactId>
-			<version>${sc.version}</version>
+			<version>1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.wangxin</groupId>
 			<artifactId>sc-feign</artifactId>
-			<version>${sc.version}</version>
+			<version>1.0</version>
 		</dependency>
 
+		<!-- SpringCloud -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-ribbon</artifactId>
@@ -37,9 +40,11 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-feign</artifactId>
 		</dependency>
+
+		<!-- SpringBoot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 			<exclusions>
 				<exclusion>
 					<groupId>ch.qos.logback</groupId>
@@ -47,31 +52,15 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
-		<dependency>
-			<!-- 对全栈web开发的支持，包括Tomcat和 spring-webmvc -->
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aop</artifactId>
-		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>
 
+		<!-- freemarker -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-freemarker</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
 
 		<!-- apache shiro -->
@@ -91,11 +80,13 @@
 			<version>0.1</version>
 		</dependency>
 
+		<!-- other -->
 		<dependency>
 			<groupId>dom4j</groupId>
 			<artifactId>dom4j</artifactId>
 		</dependency>
 
+		<!-- test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -108,6 +99,17 @@
 			<scope>true</scope>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<!-- mvn clean install -->
+		<finalName>${artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
 

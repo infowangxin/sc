@@ -6,15 +6,11 @@
 	<parent>
 		<groupId>com.wangxin</groupId>
 		<artifactId>sc</artifactId>
-		<version>${sc.version}</version>
+		<version>1.0</version>
 	</parent>
 
 	<artifactId>sc-api</artifactId>
 	<packaging>jar</packaging>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
 
 	<dependencies>
 		<!-- apache common -->
@@ -37,5 +33,19 @@
 			<artifactId>jackson-annotations</artifactId>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<!-- mvn clean install -->
+		<!-- <finalName>${artifactId}</finalName> -->
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

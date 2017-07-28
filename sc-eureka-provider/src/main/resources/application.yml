@@ -10,14 +10,14 @@ spring:
         git:
           uri: https://github.com/wangxinforme/sc/
           search-paths: sc-config
-          username: # your account
-          password: # your password
+          username: wangxinforme@163.com # your account
+          password: Ibelieve5 # your password
 
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:1111/eureka/
-
+    
 management:
   security:
      enabled: false

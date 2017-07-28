@@ -479,11 +479,11 @@ public class DateUtil {
         return false;
     }
 
-    public static void main(String[] args) {
-        Date currentTime = Calendar.getInstance().getTime();
-        Date temp = firstDayOfMonth(currentTime);
-        Date date = parse(temp);
-        System.out.println(dateToString(date, fm_yyyy_MM_dd_HHmmssSSS));
-    }
+    // public static void main(String[] args) {
+    // Date currentTime = Calendar.getInstance().getTime();
+    // Date temp = firstDayOfMonth(currentTime);
+    // Date date = parse(temp);
+    // System.out.println(dateToString(date, fm_yyyy_MM_dd_HHmmssSSS));
+    // }
 
 }

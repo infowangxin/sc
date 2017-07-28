@@ -1,4 +1,4 @@
-package com.wangxin.remote.auth;
+package com.wangxin.web.remote.auth;
 
 import java.util.List;
 

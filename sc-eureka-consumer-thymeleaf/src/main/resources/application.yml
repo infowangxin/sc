@@ -23,6 +23,8 @@ eureka:
 feign:
   httpclient:
     enabled: true
+  #hystrix:
+    #enabled: false
 
 provider:
   ribbon:

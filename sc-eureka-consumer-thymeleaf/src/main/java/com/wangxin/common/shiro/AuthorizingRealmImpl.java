@@ -25,7 +25,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.wangxin.remote.auth.AuthRemoteClient;
 import com.wangxin.api.common.constants.Constants;
 import com.wangxin.api.common.exception.BusinessException;
 import com.wangxin.api.common.salt.Encodes;
@@ -33,6 +32,7 @@ import com.wangxin.api.model.auth.PermissionVo;
 import com.wangxin.api.model.auth.Role;
 import com.wangxin.api.model.auth.User;
 import com.wangxin.common.shiro.vo.Principal;
+import com.wangxin.web.remote.auth.AuthRemoteClient;
 
 /**
  * @author Vincent.wang
