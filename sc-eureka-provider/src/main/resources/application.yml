@@ -10,8 +10,8 @@ spring:
         git:
           uri: https://github.com/wangxinforme/sc/
           search-paths: sc-config
-          username: wangxinforme@163.com # your account
-          password: Ibelieve5 # your password
+          username:  # your account
+          password:  # your password
 
 eureka:
   client:
