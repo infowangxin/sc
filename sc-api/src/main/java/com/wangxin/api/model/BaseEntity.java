@@ -14,24 +14,4 @@ public abstract class BaseEntity<E extends Serializable> implements Serializable
 
     public abstract E getId();
 
-    private String resultStatus;
-
-    private String resultMessage;
-
-    public String getResultStatus() {
-        return resultStatus;
-    }
-
-    public void setResultStatus(String resultStatus) {
-        this.resultStatus = resultStatus;
-    }
-
-    public String getResultMessage() {
-        return resultMessage;
-    }
-
-    public void setResultMessage(String resultMessage) {
-        this.resultMessage = resultMessage;
-    }
-
 }

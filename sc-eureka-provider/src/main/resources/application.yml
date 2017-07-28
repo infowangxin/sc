@@ -4,23 +4,23 @@ server:
 spring:
   application:
     name: provider
-  cloud:
-    config:
-      server:
-        git:
-          uri: https://github.com/wangxinforme/sc/
-          search-paths: sc-config
-          username:  # your account
-          password:  # your password
+  #cloud:
+    #config:
+      #server:
+        #git:
+          #uri: https://github.com/wangxinforme/sc/
+          #search-paths: sc-config
+          #username:  # your account
+          #password:  # your password
 
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:1111/eureka/
     
-management:
-  security:
-     enabled: false
+#management:
+  #security:
+     #enabled: false
 
 logging:
   config: classpath:conf/log4j2.xml

@@ -18,9 +18,11 @@ import com.wangxin.service.auth.PermissionService;
 import com.wangxin.service.auth.RoleService;
 import com.wangxin.web.remote.auth.AuthRemoteClient;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 
+@Api(tags = "权限模块接口类")
 @RestController
 @RequestMapping("/auth")
 public class AuthRemoteClientImpl implements AuthRemoteClient {
@@ -36,11 +38,9 @@ public class AuthRemoteClientImpl implements AuthRemoteClient {
     @Autowired
     private PermissionService permissionService;
 
-    // @RequestMapping(value = "/findUserByName/{username}", method = RequestMethod.GET)
-    // @GetMapping("/findUserByName/{username}")
     @Override
     @ApiOperation(value = "查询用户", notes = "根据用户名查询用户")
-    @ApiImplicitParam(name = "username", value = "用户登录账号", required = true, dataType = "String")
+    @ApiImplicitParam(name = "username", value = "用户登录账号", required = true, dataType = "String", paramType = "path")
     public User findUserByName(@PathVariable("username") String username) {
         log.debug("# findUserByName , parameter={} ", username);
         User user = authService.findUserByName(username);
@@ -48,11 +48,9 @@ public class AuthRemoteClientImpl implements AuthRemoteClient {
         return user;
     }
 
-    // @RequestMapping(value = "/findRoleByUserId/{userId}", method = RequestMethod.GET)
-    // @GetMapping("/findRoleByUserId/{userId}")
     @Override
     @ApiOperation(value = "查询用户的角色", notes = "根据用户查询对应所有角色")
-    @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "String")
+    @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "String", paramType = "path")
     public List<Role> findRoleByUserId(@PathVariable("userId") String userId) {
         log.debug("# findRoleByUserId , parameter={} ", userId);
         List<Role> roles = roleService.findRoleByUserId(userId);
@@ -60,11 +58,9 @@ public class AuthRemoteClientImpl implements AuthRemoteClient {
         return roles;
     }
 
-    // @RequestMapping(value = "/getPermissions/{userId}", method = RequestMethod.GET)
-    // @GetMapping("/getPermissions/{userId}")
     @Override
     @ApiOperation(value = "查询用户的菜单", notes = "查询用户所能访问的所有菜单")
-    @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "String")
+    @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "String", paramType = "path")
     public List<PermissionVo> getPermissions(@PathVariable("userId") String userId) {
         log.debug("# getPermissions , parameter={} ", userId);
         List<PermissionVo> pers = permissionService.getPermissions(userId);

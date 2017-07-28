@@ -2,24 +2,29 @@ package com.wangxin.api.model.auth;
 
 import com.wangxin.api.model.BaseEntity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /** 
  * @Description 角色对象
  * @author 王鑫 
  * @date Apr 12, 2017 9:11:07 AM  
  */
+@ApiModel(value = "Role", description = "角色实体类")
 public class Role extends BaseEntity<String> {
 
     private static final long serialVersionUID = -6982490361440305761L;
 
+    @ApiModelProperty(name = "id", value = "ID", dataType = "String")
     private String id;
 
-    /** 角色名称 **/
+    @ApiModelProperty(name = "name", value = "角色名称", dataType = "String")
     private String name;
 
-    /** 编码 **/
+    @ApiModelProperty(name = "code", value = "编码", dataType = "String")
     private String code;
 
-    /** 备注 **/
+    @ApiModelProperty(name = "remark", value = "备注", dataType = "String")
     private String remark;
 
     public String getId() {
