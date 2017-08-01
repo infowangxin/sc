@@ -27,8 +27,8 @@ public class MainController {
     @GetMapping("leftnav")
     String leftnav() {
         log.debug("# leftnav");
-        // return "leftnav";
-        return "leftnav_static";
+        return "leftnav";
+        // return "leftnav_static";
     }
 
     @GetMapping("topnav")

@@ -99,10 +99,10 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/info", "anon");// anon 可以理解为不拦截
         filterChainDefinitionMap.put("/static/**", "anon");// anon 可以理解为不拦截
         filterChainDefinitionMap.put("/favicon.ico", "anon");
-        
+
         filterChainDefinitionMap.put("/login", "authc");
         filterChainDefinitionMap.put("/**", "authc");
-        
+
         filterChainDefinitionMap.put("/logout", "logout");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
@@ -122,8 +122,8 @@ public class ShiroConfiguration {
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
         shiroFilterFactoryBean.setLoginUrl("/login");
         // 登录成功后要跳转的连接
-        shiroFilterFactoryBean.setSuccessUrl("/user");
-        shiroFilterFactoryBean.setUnauthorizedUrl("/403");
+        // shiroFilterFactoryBean.setSuccessUrl("/user");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/error");
 
         loadShiroFilterChain(shiroFilterFactoryBean);
         return shiroFilterFactoryBean;

@@ -79,6 +79,12 @@ public class LoginController {
         }
     }
 
+    @RequestMapping("/logout")
+    public String logout() {
+        SecurityUtils.getSubject().logout();
+        return "view/login/login";
+    }
+
     @RequestMapping("/403")
     public String unauthorizedRole() {
         log.info("------没有权限-------");

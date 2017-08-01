@@ -35,6 +35,14 @@ feign:
   #hystrix:
     #enabled: false
 
+hystrix:  
+  command:  
+    default:  
+      execution:  
+        isolation:  
+          thread:  
+            timeoutInMilliseconds: 5000 #缺省为1000
+
 provider:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule

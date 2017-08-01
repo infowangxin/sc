@@ -3,6 +3,18 @@ $("#leftnav").load('/leftnav',function(response,status,xhr){
     if(status=='success'){
         //加载完成执行导航组件
         $('#side-menu').metisMenu();
+        if ($("body").hasClass('fixed-sidebar')) {
+            $('.sidebar-scroll').slimScroll({
+                height: '100%',
+                railVisible: false,
+                color:"#65cea7",
+                opacity:.8,
+                size: '4px',
+                borderRadius: '0',
+                railBorderRadius: '0',
+                distance:0
+            });
+        }
     }
 });
 //加载顶部导航
@@ -117,20 +129,20 @@ $(document).ready(function () {
     fix_height();
 
     // Fixed Sidebar
-    $(window).bind("load", function () {
-        if ($("body").hasClass('fixed-sidebar')) {
-            $('.sidebar-scroll').slimScroll({
-                height: '100%',
-                railVisible: false,
-                color:"#65cea7",
-                opacity:.8,
-                size: '4px',
-                borderRadius: '0',
-                railBorderRadius: '0',
-                distance:0
-            });
-        }
-    });
+//    $(window).bind("load", function () {
+//        if ($("body").hasClass('fixed-sidebar')) {
+//            $('.sidebar-scroll').slimScroll({
+//                height: '100%',
+//                railVisible: false,
+//                color:"#65cea7",
+//                opacity:.8,
+//                size: '4px',
+//                borderRadius: '0',
+//                railBorderRadius: '0',
+//                distance:0
+//            });
+//        }
+//    });
 
     // Move right sidebar top after scroll
     $(window).scroll(function () {

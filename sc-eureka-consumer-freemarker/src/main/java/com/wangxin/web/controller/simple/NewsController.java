@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
+import com.wangxin.api.common.exception.BusinessException;
 import com.wangxin.api.model.simple.News;
 import com.wangxin.web.remote.simple.NewsRemoteClient;
 
@@ -89,6 +90,8 @@ public class NewsController {
     public String load(@PathVariable String id, ModelMap map) {
         log.info("# ajax加载新闻对象");
         News news = newsRemoteClient.findNewsById(id);
+        if (null == news)
+            throw new BusinessException("非法参数");
         map.addAttribute("news", news);
         return "view/news/edit_form";
     }

@@ -23,5 +23,13 @@ provider:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 
+hystrix:  
+  command:  
+    default:  
+      execution:  
+        isolation:  
+          thread:  
+            timeoutInMilliseconds: 5000 #缺省为1000
+
 logging:
   config: classpath:conf/log4j2.xml
