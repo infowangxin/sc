@@ -1,16 +1,19 @@
 package com.wangxin.common.authority.service.xss;
 
-import java.io.InputStream;
+import java.io.*;
+import java.net.URL;
 import java.util.*;
 import java.util.regex.Pattern;
 
 import javax.servlet.FilterConfig;
 
+import com.alibaba.fastjson.JSON;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.ResourceUtils;
 
 /**
  * @author 王鑫
@@ -54,12 +57,11 @@ public class XSSSecurityManager {
     public static void init(FilterConfig config) {
 
         log.debug("XSSSecurityManager init(FilterConfig config) begin");
-        // 初始化过滤配置文件
-        String xssPath = config.getServletContext().getRealPath("/") + config.getInitParameter("securityconfig");
-        log.debug(" xss_security_config.xml path={} ", xssPath);
 
         // 初始化安全过滤配置
         try {
+            URL xssPath = ResourceUtils.getURL(config.getInitParameter("securityconfig"));
+            log.debug(" xss_security_config.xml path={} ", xssPath);
             if (initConfig(xssPath)) {
                 // 生成匹配器
                 XSS_PATTERN = Pattern.compile(REGEX);
@@ -75,6 +77,9 @@ public class XSSSecurityManager {
         } catch (DocumentException e) {
             log.debug("安全过滤配置文件xss_security_config.xml加载异常");
             e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            log.debug("安全过滤配置文件xss_security_config.xml加载异常");
+            e.printStackTrace();
         }
         log.debug("XSSSecurityManager init(FilterConfig config) end");
     }
@@ -87,7 +92,7 @@ public class XSSSecurityManager {
      * @throws DocumentException
      */
     @SuppressWarnings("unchecked")
-    public static boolean initConfig(String path) throws DocumentException {
+    public static boolean initConfig(URL path) throws DocumentException {
 
         log.debug("XSSSecurityManager.initConfig(String path) begin");
         Element superElement = new SAXReader().read(path).getRootElement();
