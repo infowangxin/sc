@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <div class="navbar-header">
 	<a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
 </div>
@@ -52,11 +53,16 @@
 			</ul>
 		</div></li>
 
-	<li class="user-dropdown"><a href="#" class="btn  dropdown-toggle" data-toggle="dropdown"> <img src="${ctx}/static/images/photos/user-avatar.png" alt="" width="20"> Jack <span class="caret"></span>
-	</a>
+	<li class="user-dropdown">
+		<a href="#" class="btn  dropdown-toggle" data-toggle="dropdown">
+			<img src="${ctx}/static/images/photos/user-avatar.png" alt="" width="20">
+			<shiro:principal />
+			<span class="caret"></span>
+		</a>
 		<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
 			<li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
 			<li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
 			<li><a href="${ctx }/logout"><i class="fa fa-sign-out"></i> Log Out</a></li>
-		</ul></li>
+		</ul>
+	</li>
 </ul>
