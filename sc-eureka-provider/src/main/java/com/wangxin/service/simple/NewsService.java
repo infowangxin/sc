@@ -5,10 +5,10 @@ import java.util.List;
 import com.github.pagehelper.PageInfo;
 import com.wangxin.api.model.simple.News;
 
-/** 
+/**
+ * @author 王鑫
  * @Description 新闻接口类
- * @author 王鑫 
- * @date Mar 16, 2017 5:19:14 PM  
+ * @date Mar 16, 2017 5:19:14 PM
  */
 public interface NewsService {
 
@@ -22,8 +22,5 @@ public interface NewsService {
 
     public PageInfo<News> findNewsByPage(Integer pageNum, String keywords);
 
-    public PageInfo<News> findNewsByPage1(Integer pageNum, String keywords);
-
-    public PageInfo<News> findNewsByPage2(Integer pageNum, String keywords);
-
+    public News findNewsByTitle(String title);
 }

@@ -104,6 +104,7 @@ public class ShiroConfiguration {
         logger.info("##################从数据库读取权限规则，加载到shiroFilter中##################");
 
         filterChainDefinitionMap.put("/info", "anon");// anon 可以理解为不拦截
+        filterChainDefinitionMap.put("/wx", "anon");// anon 可以理解为不拦截
         filterChainDefinitionMap.put("/static/**", "anon");// anon 可以理解为不拦截
         filterChainDefinitionMap.put("/favicon.ico", "anon");
 

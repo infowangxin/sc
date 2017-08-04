@@ -16,11 +16,12 @@
 	</parent>
 
 	<modules>
-		<module>sc-api</module>
+		<module>sc-commons</module>
 		<module>sc-eureka</module>
 		<module>sc-eureka-consumer-freemarker</module>
 		<module>sc-eureka-consumer-jsp</module>
 		<module>sc-eureka-consumer-thymeleaf</module>
+		<module>sc-eureka-hystrix</module>
 		<module>sc-eureka-provider</module>
 		<module>sc-feign</module>
 	</modules>

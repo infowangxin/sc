@@ -32,7 +32,7 @@ import com.wangxin.api.model.auth.PermissionVo;
 import com.wangxin.api.model.auth.Role;
 import com.wangxin.api.model.auth.User;
 import com.wangxin.common.shiro.vo.Principal;
-import com.wangxin.web.remote.auth.AuthRemoteClient;
+import com.wangxin.web.auth.AuthRemoteClient;
 
 /**
  * @author Vincent.wang
@@ -101,7 +101,7 @@ public class AuthorizingRealmImpl extends AuthorizingRealm {
         Set<String> permissions = new HashSet<String>();
         Object permisObj = session.getAttribute(Constants.PERMISSION_URL);
         if (null == permisObj) {
-            // Collection<PermissionVo> pers = getPermissions(principal.getUser().getId());
+            // Collection<PermissionVo> pers = getPermissions(principal.getNews().getId());
             Collection<PermissionVo> pers = authRemoteClient.getPermissions(principal.getUser().getId());
             for (PermissionVo permission : pers) {
                 permissions.add(permission.getUrl());
@@ -119,7 +119,7 @@ public class AuthorizingRealmImpl extends AuthorizingRealm {
         Set<String> roleCodes = new HashSet<String>();
         Object roleNameObj = session.getAttribute(Constants.ROLE_CODE);
         if (null == roleNameObj) {
-            // for (Role role : findRoleByUserId(principal.getUser().getId())) {
+            // for (Role role : findRoleByUserId(principal.getNews().getId())) {
             for (Role role : authRemoteClient.findRoleByUserId(principal.getUser().getId())) {
                 roleCodes.add(role.getCode());
             }

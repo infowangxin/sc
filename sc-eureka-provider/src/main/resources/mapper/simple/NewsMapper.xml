@@ -59,6 +59,15 @@
 		order by create_time asc
 	</select>
 
+	<select id="findNewsByTitle" parameterType="string" resultMap="newsMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<where>
+			title = #{title}
+		</where>
+		order by create_time asc
+	</select>
+
 	<update id="update" parameterType="com.wangxin.api.model.simple.News">
 		UPDATE T_NEWS
 		<set>

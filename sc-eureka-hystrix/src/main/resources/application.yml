@@ -1,0 +1,29 @@
+server:
+  port: 6000
+spring:
+  application:
+    name: sc-eureka-hystrix
+    
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+
+feign:
+  httpclient:
+    enabled: true
+
+hystrix:  
+  command:  
+    default:  
+      execution:  
+        isolation:  
+          thread:  
+            timeoutInMilliseconds: 5000 #缺省为1000
+
+provider:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+logging:
+  config: classpath:conf/log4j2.xml

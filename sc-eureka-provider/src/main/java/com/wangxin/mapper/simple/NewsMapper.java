@@ -21,4 +21,5 @@ public interface NewsMapper extends BaseMapper<String, News> {
 
     List<News> findNewsByPage(@Param("keywords") String keywords);
 
+    List<News> findNewsByTitle(@Param("title")String title);
 }

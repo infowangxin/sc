@@ -18,7 +18,7 @@
 		<!-- sc -->
 		<dependency>
 			<groupId>com.wangxin</groupId>
-			<artifactId>sc-api</artifactId>
+			<artifactId>sc-commons</artifactId>
 			<version>1.0</version>
 		</dependency>
 		<dependency>

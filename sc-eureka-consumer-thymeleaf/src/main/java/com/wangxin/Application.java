@@ -9,12 +9,17 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @ServletComponentScan
 @EnableDiscoveryClient
 @EnableFeignClients
+//@EnableHystrix
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {
 
@@ -22,14 +27,12 @@ public class Application extends SpringBootServletInitializer {
         SpringApplication.run(Application.class, args);
     }
 
+    @SuppressWarnings("Duplicates")
     @Bean
     public EmbeddedServletContainerCustomizer containerCustomizer() {
-
         return new EmbeddedServletContainerCustomizer() {
             @Override
             public void customize(ConfigurableEmbeddedServletContainer container) {
-
-                // ERROR PAGE
                 ErrorPage error401Page = new ErrorPage(HttpStatus.UNAUTHORIZED, "/error/401.html");
                 ErrorPage error403Page = new ErrorPage(HttpStatus.FORBIDDEN, "/error/403.html");
                 ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/error/404.html");
