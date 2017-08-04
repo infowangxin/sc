@@ -28,7 +28,7 @@
 `浏览器访问 `http://localhost:端口/testService?a=1&b=2` ，看到“来自于server, a+b=3 , client 端口”则证明访问成功`
 
 * 访问 sc-eureka-consumer-freemarker
-`浏览器访问 `[http://localhost:3000](http://localhost:3000)`，全看到登录页面`
+`浏览器访问 `[http://localhost:3000](http://localhost:3000)`，会看到登录页面`
 
 * 访问 sc-eureka-consumer-jsp
 `浏览器访问 `[http://localhost:4000](http://localhost:4000)`，会看到登录页面`

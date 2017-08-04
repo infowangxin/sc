@@ -1,4 +1,4 @@
-package com.wangxin.web.simple;
+package com.wangxin.web.remote.simple;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;

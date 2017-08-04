@@ -1,9 +1,9 @@
 server:
-  port: 6000
+  port: 2001
 spring:
   application:
     name: sc-eureka-hystrix
-    
+
 eureka:
   client:
     serviceUrl:
@@ -12,6 +12,8 @@ eureka:
 feign:
   httpclient:
     enabled: true
+  #hystrix:
+    #enabled: false
 
 hystrix:  
   command:  

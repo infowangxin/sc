@@ -1,10 +1,10 @@
-package com.wangxin.hystrix.impl.simple;
+package com.wangxin.web.remote.impl.simple;
 
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
 import com.wangxin.api.model.simple.News;
 import com.wangxin.service.simple.NewsService;
-import com.wangxin.web.simple.NewsRemoteClient;
+import com.wangxin.web.remote.simple.NewsRemoteClient;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

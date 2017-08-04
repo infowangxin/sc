@@ -3,7 +3,7 @@ package com.wangxin.hystrix.simple;
 import com.alibaba.fastjson.JSON;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.wangxin.api.model.simple.News;
-import com.wangxin.web.simple.NewsRemoteClient;
+import com.wangxin.web.remote.simple.NewsRemoteClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

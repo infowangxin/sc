@@ -24,7 +24,7 @@ import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
 import com.wangxin.api.common.exception.BusinessException;
 import com.wangxin.api.model.simple.News;
-import com.wangxin.web.simple.NewsRemoteClient;
+import com.wangxin.web.remote.simple.NewsRemoteClient;
 
 /**
  * @Description 新闻示例

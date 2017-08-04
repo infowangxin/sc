@@ -1,8 +1,8 @@
-package com.wangxin.hystrix.impl.auth;
+package com.wangxin.web.remote.impl.auth;
 
 import java.util.List;
 
-import com.wangxin.web.auth.AuthRemoteClient;
+import com.wangxin.web.remote.auth.AuthRemoteClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

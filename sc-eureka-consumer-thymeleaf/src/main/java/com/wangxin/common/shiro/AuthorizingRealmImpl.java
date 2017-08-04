@@ -32,7 +32,7 @@ import com.wangxin.api.model.auth.PermissionVo;
 import com.wangxin.api.model.auth.Role;
 import com.wangxin.api.model.auth.User;
 import com.wangxin.common.shiro.vo.Principal;
-import com.wangxin.web.auth.AuthRemoteClient;
+import com.wangxin.web.remote.auth.AuthRemoteClient;
 
 /**
  * @author Vincent.wang

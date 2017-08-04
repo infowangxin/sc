@@ -3,7 +3,7 @@ package com.wangxin.hystrix.auth;
 import com.wangxin.api.model.auth.PermissionVo;
 import com.wangxin.api.model.auth.Role;
 import com.wangxin.api.model.auth.User;
-import com.wangxin.web.auth.AuthRemoteClient;
+import com.wangxin.web.remote.auth.AuthRemoteClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
