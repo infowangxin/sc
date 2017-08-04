@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class WxController {
+public class HystrixSimple1Controller {
 
-    private static final Logger log = LoggerFactory.getLogger(WxController.class);
+    private static final Logger log = LoggerFactory.getLogger(HystrixSimple1Controller.class);
 
     @Autowired
     private WxService wxService;

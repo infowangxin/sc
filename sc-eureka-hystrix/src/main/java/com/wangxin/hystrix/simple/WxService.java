@@ -20,6 +20,7 @@ public class WxService {
 
     /**
      * 当请求远程服务失败后会调用fallback方法
+     *
      * @return
      */
     @HystrixCommand(fallbackMethod = "fallback")
@@ -33,7 +34,11 @@ public class WxService {
     public News fallback() {
         log.debug("# fallback");
         //TODO do something
-        return null;
+
+        //return simple
+        News n = new News();
+        n.setTitle("from Hystrix fallback");
+        return n;
     }
 
 }

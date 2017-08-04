@@ -75,8 +75,8 @@ public class NewsRemoteClientImpl implements NewsRemoteClient {
     @ApiOperation(value = "查询新闻", notes = "查询新闻")
     public News getNews() {
         try {
-            log.debug("# sleep 90000 millis");
-            Thread.sleep(50000);
+            log.debug("# sleep 6000 millis");
+            Thread.sleep(6000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
