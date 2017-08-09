@@ -19,7 +19,7 @@ import java.util.Set;
 @ServletComponentScan
 @EnableDiscoveryClient
 @EnableFeignClients
-//@EnableHystrix
+@EnableHystrix
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {
 

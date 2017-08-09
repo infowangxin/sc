@@ -27,11 +27,6 @@
             <artifactId>sc-feign</artifactId>
             <version>1.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.wangxin</groupId>
-            <artifactId>sc-eureka-hystrix</artifactId>
-            <version>1.0</version>
-        </dependency>
 
         <!-- SpringCloud -->
         <dependency>
@@ -46,10 +41,10 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-feign</artifactId>
         </dependency>
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.cloud</groupId>-->
-        <!--<artifactId>spring-cloud-starter-hystrix</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-hystrix</artifactId>
+        </dependency>
 
         <!-- SpringBoot -->
         <dependency>

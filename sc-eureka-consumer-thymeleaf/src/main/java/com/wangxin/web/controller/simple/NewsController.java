@@ -12,13 +12,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
@@ -27,8 +21,8 @@ import com.wangxin.api.model.simple.News;
 import com.wangxin.web.remote.simple.NewsRemoteClient;
 
 /**
- * @Description 新闻示例
  * @author 王鑫
+ * @Description 新闻示例
  * @date Mar 16, 2017 3:58:01 PM
  */
 @Controller
@@ -49,10 +43,17 @@ public class NewsController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
+    @RequestMapping(value = "/wx", method = RequestMethod.GET)
+    public News getNews() {
+        log.debug("# wx");
+        return newsRemoteClient.getNews();
+    }
+
+
     /**
+     * @return
      * @Description 进入新增页面
      * @author 王鑫
-     * @return
      */
     @RequestMapping(value = "/news/add", method = RequestMethod.GET)
     public String add() {
@@ -61,10 +62,10 @@ public class NewsController {
     }
 
     /**
-     * @Description ajax保存发布新闻
-     * @author 王鑫
      * @param news
      * @return
+     * @Description ajax保存发布新闻
+     * @author 王鑫
      */
     @RequestMapping(value = "/news/add", method = RequestMethod.POST)
     @ResponseBody
@@ -82,9 +83,9 @@ public class NewsController {
     }
 
     /**
+     * @return
      * @Description ajax加载新闻对象
      * @author 王鑫
-     * @return
      */
     @RequestMapping(value = "/news/load/{id}", method = RequestMethod.GET)
     public String load(@PathVariable String id, ModelMap map) {
@@ -97,10 +98,10 @@ public class NewsController {
     }
 
     /**
-     * @Description ajax保存更新重新发布新闻
-     * @author 王鑫
      * @param news
      * @return
+     * @Description ajax保存更新重新发布新闻
+     * @author 王鑫
      */
     @RequestMapping(value = "/news/edit", method = RequestMethod.POST)
     @ResponseBody
