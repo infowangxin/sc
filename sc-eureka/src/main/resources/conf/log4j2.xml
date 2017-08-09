@@ -6,15 +6,23 @@
 
 	<properties>
 		<!-- 日志备份目录 -->
-		<property name="BACKUP_HOME">./logs</property>
+		<property name="BACKUP_HOME">./sc/sc-eureka/logs</property>
+		<property name="PATTERN_FORMAT">%d{yyyy/MM/dd HH:mm:ss,SSS} %-6p %-21t %c.%M(%F:%L) - %m%n</property>
 	</properties>
 
 	<appenders>
 		<!-- 定义控制台输出 -->
 		<Console name="Console" target="SYSTEM_OUT" follow="true">
-			<PatternLayout pattern="%d{yyyy/MM/dd HH:mm:ss,SSS} %-6r [%-6p] %c.%M(%F:%L) - %m%n" />
-			<!-- <PatternLayout pattern="%sn %d{yy/MM/dd HH:mm:ss,SSS} %r [%-6p] [%t] %c.%M(%F:%L) - %m%n" /> -->
+			<PatternLayout pattern="${PATTERN_FORMAT}" />
 		</Console>
+
+		<!-- 应用日志 -->
+		<RollingRandomAccessFile name="BusinessLog" fileName="${BACKUP_HOME}/business.log" filePattern="${BACKUP_HOME}/business.%d{yyyy-MM-dd}.log">
+			<PatternLayout pattern="${PATTERN_FORMAT}" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+		</RollingRandomAccessFile>
 	</appenders>
 
 	<loggers>
@@ -32,6 +40,7 @@
 		<!-- Root Logger -->
 		<root level="debug">
 			<appender-ref ref="Console" />
+			<appender-ref ref="BusinessLog" />
 		</root>
 
 	</loggers>
