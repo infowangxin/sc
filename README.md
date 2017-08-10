@@ -24,8 +24,8 @@
 `浏览器访问 `[http://localhost:1111](http://localhost:1111) `，Application表格当中可以看到注册上来的server与client，表明启动都成功了`
 
 * 访问 sc-eureka-provider
-` 浏览器访问 `http://localhost:端口/add?a=1&b=2` ，看到“来自于server, a+b=3”则证明访问成功`
-`浏览器访问 `http://localhost:端口/testService?a=1&b=2` ，看到“来自于server, a+b=3 , client 端口”则证明访问成功`
+` 浏览器访问 `[http://localhost:2000/msg](http://localhost:2000/msg)` ，看到“来自于server ...”则证明访问成功`
+` 浏览器访问 `[http://localhost:2000](http://localhost:2000)` ，进入swagger2 ui页面`
 
 * 访问 sc-eureka-consumer-freemarker
 `浏览器访问 `[http://localhost:3000](http://localhost:3000)`，会看到登录页面`

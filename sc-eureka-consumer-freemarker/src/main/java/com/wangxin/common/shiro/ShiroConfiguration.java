@@ -19,6 +19,7 @@ import org.springframework.context.annotation.Configuration;
  * @author 王鑫 
  * @date Apr 12, 2017 3:51:55 PM  
  */
+@SuppressWarnings("all")
 @Configuration
 public class ShiroConfiguration {
 
@@ -99,6 +100,7 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/info", "anon");// anon 可以理解为不拦截
         filterChainDefinitionMap.put("/static/**", "anon");// anon 可以理解为不拦截
         filterChainDefinitionMap.put("/favicon.ico", "anon");
+        filterChainDefinitionMap.put("/hystrix/**", "anon");
 
         filterChainDefinitionMap.put("/login", "authc");
         filterChainDefinitionMap.put("/**", "authc");

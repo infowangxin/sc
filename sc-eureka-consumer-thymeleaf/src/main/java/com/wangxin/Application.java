@@ -10,15 +10,14 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @ServletComponentScan
 @EnableDiscoveryClient
 @EnableFeignClients
+@EnableHystrixDashboard
 @EnableHystrix
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {

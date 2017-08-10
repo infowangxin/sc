@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.annotations.ApiIgnore;
 
 @ApiIgnore
@@ -26,9 +28,10 @@ public class SystemController {
     }
 
     @RequestMapping(value = "/msg", method = RequestMethod.GET)
+    @ResponseBody
     public String msg() {
         ServiceInstance instance = client.getLocalServiceInstance();
-        String result = "<br/>来自于服务端<br/>server_id:" + instance.getServiceId() + "<br/>host:" + instance.getHost() + "<br/>port:" + instance.getPort() + "<br/>";
+        String result = "来自于服务端<br/>server_id:" + instance.getServiceId() + "<br/>host:" + instance.getHost() + "<br/>port:" + instance.getPort() + "<br/>";
         logger.info(result);
         return result;
     }

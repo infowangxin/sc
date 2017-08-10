@@ -47,7 +47,7 @@ public class NewsRemoteClientHystrix implements NewsRemoteClient {
     }
 
     @Override
-    public News getNews() throws BusinessException {
+    public News getNews() throws RemoteRequestExcepton {
         log.error("# getNews Hystrix");
         // TODO business something
         //return null;

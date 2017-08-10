@@ -12,8 +12,8 @@ eureka:
 feign:
   httpclient:
     enabled: true
-  #hystrix:
-    #enabled: false
+  hystrix:
+    enabled: true
 
 hystrix:  
   command:  
@@ -22,6 +22,9 @@ hystrix:
         isolation:  
           thread:  
             timeoutInMilliseconds: 5000 #缺省为1000
+  stream:
+    dashboard:
+      intervalInMilliseconds: 2000
 
 provider:
   ribbon:
