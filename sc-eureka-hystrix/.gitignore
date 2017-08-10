@@ -6,4 +6,4 @@
 /.settings
 /bin
 /logs
-/sc-eureka-consumer-thymeleaf.iml
+/sc-eureka-hystrix.iml
