@@ -27,7 +27,6 @@ public class Application extends SpringBootServletInitializer {
         SpringApplication.run(Application.class, args);
     }
 
-    @SuppressWarnings("Duplicates")
     @Bean
     public EmbeddedServletContainerCustomizer containerCustomizer() {
         return new EmbeddedServletContainerCustomizer() {
