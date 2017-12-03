@@ -11,7 +11,7 @@
 
 	<artifactId>sc-eureka-consumer-jsp</artifactId>
 
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<dependencies>
 
