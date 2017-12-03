@@ -48,13 +48,13 @@ custom:
   datasource:
     names: db1,db2
     db1:
-      url: jdbc:mysql://127.0.0.1:3306/demo?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=false
       driverClassName: com.mysql.jdbc.Driver
       username: root
       password: root
       validationQuery: SELECT 1
     db2:
-      url: jdbc:mysql://127.0.0.1:3306/auth?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      url: jdbc:mysql://127.0.0.1:3306/demo?useUnicode=true&characterEncoding=UTF-8&useSSL=false
       driverClassName: com.mysql.jdbc.Driver
       username: root
       password: root
