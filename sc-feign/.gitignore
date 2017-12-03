@@ -6,3 +6,5 @@
 /.settings
 /bin
 /*.iml
+rebel.xml
+/src/main/resources/rebel.xml
