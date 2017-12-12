@@ -11,18 +11,18 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.9.RELEASE</version>
-<!-- 		<version>1.5.6.RELEASE</version> -->
+		<!-- <version>1.5.6.RELEASE</version> -->
 		<relativePath />
 	</parent>
 
 	<modules>
 		<module>sc-commons</module>
 		<module>sc-eureka</module>
-		<module>sc-eureka-consumer-freemarker</module>
-		<module>sc-eureka-consumer-jsp</module>
-		<module>sc-eureka-consumer-thymeleaf</module>
-		<module>sc-eureka-hystrix</module>
-		<module>sc-eureka-provider</module>
+		<module>sc-consumer-freemarker</module>
+		<module>sc-consumer-jsp</module>
+		<module>sc-consumer-thymeleaf</module>
+		<module>sc-hystrix</module>
+		<module>sc-provider</module>
 		<module>sc-feign</module>
 	</modules>
 
