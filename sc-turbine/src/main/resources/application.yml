@@ -1,14 +1,20 @@
 server:
-  port: 2001
+  port: 2002
 spring:
   application:
-    name: sc-hystrix
+    name: sc-eureka-hystrix
 
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:1111/eureka/
+provider:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 
+logging:
+  config: classpath:conf/log4j2.xml
+  
 feign:
   httpclient:
     enabled: true
@@ -25,10 +31,9 @@ hystrix:
   stream:
     dashboard:
       intervalInMilliseconds: 2000
-
-provider:
-  ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
-
-logging:
-  config: classpath:conf/log4j2.xml
+ 
+turbine:
+  appConfig: node01,node02
+  aggregator: 
+    clusterConfig: MAIN
+  clusterNameExpression: metadata['cluster']
