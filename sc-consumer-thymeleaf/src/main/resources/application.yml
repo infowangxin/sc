@@ -2,7 +2,7 @@ server:
   port: 5000
 spring:
   application:
-    name: consumer_thymeleaf
+    name: sc_consumer_thymeleaf
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html

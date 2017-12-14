@@ -2,7 +2,7 @@ server:
   port: 2000
 spring:
   application:
-    name: provider
+    name: sc_provider
   #cloud:
     #config:
       #server:

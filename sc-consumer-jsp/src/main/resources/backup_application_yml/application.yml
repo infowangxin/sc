@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: consumer_jsp
+    name: sc_consumer_jsp
   mvc:
     view:
       prefix: /WEB-INF/views/

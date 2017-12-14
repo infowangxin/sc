@@ -3,7 +3,7 @@ server:
   
 spring:
   application:
-    name: consumer_freemarker
+    name: sc_consumer_freemarker
   freemarker:
     request-context-attribute: request
     allow-request-override: false

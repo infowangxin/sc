@@ -2,24 +2,15 @@ server:
   port: 2002
 spring:
   application:
-    name: sc-eureka-hystrix
+    name: sc_turbine
 
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:1111/eureka/
-provider:
-  ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 
 logging:
   config: classpath:conf/log4j2.xml
-  
-feign:
-  httpclient:
-    enabled: true
-  hystrix:
-    enabled: true
 
 hystrix:  
   command:  
@@ -28,12 +19,15 @@ hystrix:
         isolation:  
           thread:  
             timeoutInMilliseconds: 5000 #缺省为1000
-  stream:
-    dashboard:
-      intervalInMilliseconds: 2000
+
+security.basic.enabled: false
  
 turbine:
-  appConfig: node01,node02
+  appConfig: sc_consumer_freemarker,sc_consumer_jsp,sc_consumer_thymeleaf,sc_provider,sc_hystrix #配置Eureka中的serviceId列表，表明监控哪些服务
   aggregator: 
-    clusterConfig: MAIN
+    clusterConfig: default # 指定聚合哪些集群，多个使用","分割，默认为default
   clusterNameExpression: metadata['cluster']
+  # 1. clusterNameExpression指定集群名称，默认表达式appName；此时：turbine.aggregator.clusterConfig需要配置想要监控的应用名称
+  # 2. 当clusterNameExpression: default时，turbine.aggregator.clusterConfig可以不写，因为默认就是default
+  # 3. 当clusterNameExpression: metadata['cluster']时，假设想要监控的应用配置了eureka.instance.metadata-map.cluster: ABC，则需要配置，同时turbine.aggregator.clusterConfig: ABC
+  

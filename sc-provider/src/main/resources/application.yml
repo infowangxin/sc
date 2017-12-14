@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: provider
+    name: sc_provider
   #cloud:
     #config:
       #server:
