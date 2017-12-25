@@ -4,6 +4,23 @@ server:
 spring:
   application:
     name: sc_provider
+  redis:
+    # database: 0
+    hostName: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 0
+    pool:
+      maxTotal: 30 # 控制一个pool可分配多少个jedis实例
+      maxIdle: 10 # 最大能够保持idel状态的对象数
+      minIdle: 5 # 最小能够保持idel状态的对象数
+      maxWaitMillis: 3000 # 表示当borrow一个jedis实例时，最大的等待时间，如果超过等待时间，则直接抛出JedisConnectionException
+      timeBetweenEvictionRunsMillis: 30000 # 多长时间检查一次连接池中空闲的连接
+      minEvictableIdleTimeMillis: 30000 # 空闲连接多长时间后会被收回, 单位是毫秒
+      testOnCreate: true # 当调用create Object方法时，是否进行有效性检查      
+      testOnBorrow: true # 当调用borrow Object方法时，是否进行有效性检查
+      testOnReturn: true # 当调用return Object方法时，是否进行有效性检查
+      testWhileIdle: true # 当调用test idle方法时，是否进行有效性检查
   #cloud:
     #config:
       #server:

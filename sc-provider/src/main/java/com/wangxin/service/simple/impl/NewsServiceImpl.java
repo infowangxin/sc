@@ -14,10 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.wangxin.api.common.constants.Constants;
-import com.wangxin.api.common.util.UUIDUtil;
 import com.wangxin.api.model.simple.News;
 import com.wangxin.common.datasource.DataSourceEnum;
 import com.wangxin.common.datasource.TargetDataSource;
+import com.wangxin.common.id.RedisIdGenerator;
 import com.wangxin.mapper.simple.NewsMapper;
 import com.wangxin.service.simple.NewsService;
 
@@ -34,11 +34,15 @@ public class NewsServiceImpl implements NewsService {
     @Autowired
     private NewsMapper newsMapper;
 
+    @Autowired
+    private RedisIdGenerator redisIdGenerator;
+
     @Transactional
     @Override
     public boolean addNews(News news) {
         if (news != null) {
-            news.setId(UUIDUtil.getRandom32PK());
+            // news.setId(UUIDUtil.getRandom32PK());
+            news.setId(redisIdGenerator.nextUniqueId("T_NEWS"));
             news.setCreateTime(Calendar.getInstance().getTime());
             int flag = newsMapper.insert(news);
             if (flag == 1)
@@ -97,10 +101,10 @@ public class NewsServiceImpl implements NewsService {
     @TargetDataSource(DataSourceEnum.DB1)
     public News findNewsByTitle(String title) {
         // 从数据库1当中查询
-        if(StringUtils.isBlank(title))
+        if (StringUtils.isBlank(title))
             return null;
         List<News> list = newsMapper.findNewsByTitle(title);
-        if(CollectionUtils.isEmpty(list))
+        if (CollectionUtils.isEmpty(list))
             return null;
         return list.iterator().next();
     }

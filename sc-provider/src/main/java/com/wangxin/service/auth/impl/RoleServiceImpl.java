@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.wangxin.api.common.exception.BusinessException;
-import com.wangxin.api.common.util.UUIDUtil;
 import com.wangxin.api.model.auth.Permission;
 import com.wangxin.api.model.auth.Role;
 import com.wangxin.api.model.auth.RolePermission;
+import com.wangxin.common.id.RedisIdGenerator;
 import com.wangxin.mapper.auth.PermissionMapper;
 import com.wangxin.mapper.auth.RoleMapper;
 import com.wangxin.mapper.auth.RolePermissionMapper;
@@ -33,6 +33,9 @@ public class RoleServiceImpl implements RoleService {
     @Autowired
     private RolePermissionMapper rolePermissionMapper;
 
+    @Autowired
+    private RedisIdGenerator redisIdGenerator;
+
     @Transactional
     public void addRole(Role role) {
         if (role == null || StringUtils.isBlank(role.getName())) {
@@ -43,7 +46,7 @@ public class RoleServiceImpl implements RoleService {
         }
         Role r = findRoleByCode(role.getCode());
         if (r == null) {
-            role.setId(UUIDUtil.getRandom32PK());
+            role.setId(redisIdGenerator.nextUniqueId("T_ROLE_PERMISSION"));
             roleMapper.insert(role);
         }
     }
@@ -66,11 +69,11 @@ public class RoleServiceImpl implements RoleService {
     public void addRolePermission(String roleCode, String permissionKey) {
         Role role = findRoleByCode(roleCode);
         if (role == null) {
-            throw new BusinessException("role-fail","## 给角色授权失败， 角色编码错误");
+            throw new BusinessException("role-fail", "## 给角色授权失败， 角色编码错误");
         }
         Permission permis = permissionMapper.findPermissionByKey(permissionKey);
         if (permis == null) {
-            throw new BusinessException("role-fail","## 给角色授权失败， 菜单KEY不存在，key="+permissionKey);
+            throw new BusinessException("role-fail", "## 给角色授权失败， 菜单KEY不存在，key=" + permissionKey);
         }
 
         RolePermission rolePermission = new RolePermission();
@@ -79,7 +82,7 @@ public class RoleServiceImpl implements RoleService {
 
         RolePermission rp = rolePermissionMapper.findRolePermission(rolePermission);
         if (rp == null) {
-            rolePermission.setId(UUIDUtil.getRandom32PK());
+            rolePermission.setId(redisIdGenerator.nextUniqueId("T_ROLE_PERMISSION"));
             rolePermissionMapper.insert(rolePermission);
         }
 

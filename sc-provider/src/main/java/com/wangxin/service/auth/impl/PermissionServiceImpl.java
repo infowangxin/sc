@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.wangxin.mapper.auth.PermissionMapper;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +13,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.wangxin.api.common.exception.BusinessException;
-import com.wangxin.api.common.util.UUIDUtil;
 import com.wangxin.api.model.auth.Permission;
 import com.wangxin.api.model.auth.PermissionVo;
+import com.wangxin.common.id.RedisIdGenerator;
+import com.wangxin.mapper.auth.PermissionMapper;
 import com.wangxin.service.auth.PermissionService;
 
 @Service("permissionService")
@@ -24,7 +24,9 @@ public class PermissionServiceImpl implements PermissionService {
 
     @Autowired
     private PermissionMapper permissionMapper;
-
+    
+    @Autowired
+    private RedisIdGenerator redisIdGenerator;
 
     private PermissionVo convertToVo(Permission per) {
         PermissionVo pvo = new PermissionVo();
@@ -125,7 +127,7 @@ public class PermissionServiceImpl implements PermissionService {
         Permission p = permissionMapper.findPermissionByKey(permission.getKey());
         if (p != null)
             throw new BusinessException("permission-fail", "#创建菜单出错;菜单Key已经存在,key=" + permission.getKey());
-        permission.setId(UUIDUtil.getRandom32PK());
+        permission.setId(redisIdGenerator.nextUniqueId("T_PERMISSION"));
         permissionMapper.insert(permission);
     }
 

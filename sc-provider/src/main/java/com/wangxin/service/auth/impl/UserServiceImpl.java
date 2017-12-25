@@ -14,10 +14,10 @@ import com.wangxin.api.common.constants.Constants;
 import com.wangxin.api.common.exception.BusinessException;
 import com.wangxin.api.common.salt.Digests;
 import com.wangxin.api.common.salt.Encodes;
-import com.wangxin.api.common.util.UUIDUtil;
 import com.wangxin.api.model.auth.Role;
 import com.wangxin.api.model.auth.User;
 import com.wangxin.api.model.auth.UserRole;
+import com.wangxin.common.id.RedisIdGenerator;
 import com.wangxin.mapper.auth.RoleMapper;
 import com.wangxin.mapper.auth.UserMapper;
 import com.wangxin.mapper.auth.UserRoleMapper;
@@ -39,6 +39,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+    
+    @Autowired
+    private RedisIdGenerator redisIdGenerator;
 
     /**
      * 设定安全的密码，生成随机的salt并经过1024次 sha-1 hash
@@ -80,13 +83,13 @@ public class UserServiceImpl implements UserService {
         entryptPassword(user);
         user.setStatus(Constants.STATUS_VALID);
         user.setCreateTime(Calendar.getInstance().getTime());
-        user.setId(UUIDUtil.getRandom32PK());
+        user.setId(redisIdGenerator.nextUniqueId("T_USER"));
         userMapper.insert(user);
 
         UserRole ur = new UserRole();
         ur.setRoleId(r.getId());
         ur.setUserId(user.getId());
-        ur.setId(UUIDUtil.getRandom32PK());
+        ur.setId(redisIdGenerator.nextUniqueId("T_USER_ROLE"));
         // daoService.save(ur);
         userRoleMapper.insert(ur);
     }
