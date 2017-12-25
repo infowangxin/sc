@@ -28,7 +28,7 @@ public class RedisIdGeneratorImpl implements RedisIdGenerator {
     private static final int step = 1;// 递增值
     private static final int length = 8;// 长度
 
-    @Value("${prefix}")
+    @Value("${spring.application.name}")
     private String prefix;// redis key固定前缀，一般用于区分应用
 
     @Value("${frequentLogPrint:false}")
