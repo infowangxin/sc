@@ -18,12 +18,12 @@
 		</Console>
 
 		<!-- 应用日志 -->
-		<RollingRandomAccessFile name="BusinessLog" fileName="${BACKUP_HOME}/business.log" filePattern="${BACKUP_HOME}/business.%d{yyyy-MM-dd}.log">
-			<PatternLayout pattern="${PATTERN_FORMAT}" />
-			<Policies>
-				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
-			</Policies>
-		</RollingRandomAccessFile>
+		<!-- <RollingRandomAccessFile name="BusinessLog" fileName="${BACKUP_HOME}/business.log" filePattern="${BACKUP_HOME}/business.%d{yyyy-MM-dd}.log"> -->
+		<!-- <PatternLayout pattern="${PATTERN_FORMAT}" /> -->
+		<!-- <Policies> -->
+		<!-- <TimeBasedTriggeringPolicy interval="1" modulate="true" /> -->
+		<!-- </Policies> -->
+		<!-- </RollingRandomAccessFile> -->
 	</appenders>
 
 	<loggers>

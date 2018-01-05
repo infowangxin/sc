@@ -60,10 +60,7 @@ public class NewsRemoteClientImpl implements NewsRemoteClient {
 
     @Override
     @ApiOperation(value = "分页查询新闻信息", notes = "分页查询新闻信息")
-    @ApiImplicitParams({ 
-        @ApiImplicitParam(name = "keywords", value = "查询关键字", required = false, dataType = "String", paramType = "query"), 
-        @ApiImplicitParam(name = "pageNum", value = "分页查询的页码", required = false, dataType = "Integer", defaultValue = "1", paramType = "query") 
-    })
+    @ApiImplicitParams({ @ApiImplicitParam(name = "keywords", value = "查询关键字", required = false, dataType = "String", paramType = "query"), @ApiImplicitParam(name = "pageNum", value = "分页查询的页码", required = false, dataType = "Integer", defaultValue = "1", paramType = "query") })
     public PageInfo<News> findNewsByPage(@RequestParam(value = "keywords", required = false) String keywords, @RequestParam(value = "pageNum", required = false) Integer pageNum) {
         log.debug("# parameter , {} , {}", keywords, pageNum);
         PageInfo<News> page = newsService.findNewsByPage(pageNum, keywords);
@@ -81,7 +78,7 @@ public class NewsRemoteClientImpl implements NewsRemoteClient {
             e.printStackTrace();
         }
         News n = newsService.findNewsByTitle("test");
-        log.debug("# News={}",JSON.toJSONString(n));
+        log.debug("# News={}", JSON.toJSONString(n, true));
         return n;
     }
 }

@@ -6,7 +6,7 @@
 
 	<properties>
 		<!-- 日志备份目录 -->
-		<!--<property name="BACKUP_HOME">./sc/sc-eureka-consumer-jsp/logs</property>-->
+		<!--<property name="BACKUP_HOME">./sc/sc-eureka-consumer-jsp/logs</property> -->
 		<property name="BACKUP_HOME">./logs</property>
 		<property name="PATTERN_FORMAT">%d{yyyy/MM/dd HH:mm:ss,SSS} %-6p %-21t %c.%M(%F:%L) - %m%n</property>
 	</properties>
@@ -18,12 +18,12 @@
 		</Console>
 
 		<!-- 应用日志 -->
-		<RollingRandomAccessFile name="BusinessLog" fileName="${BACKUP_HOME}/business.log" filePattern="${BACKUP_HOME}/business.%d{yyyy-MM-dd}.log">
-			<PatternLayout pattern="${PATTERN_FORMAT}" />
-			<Policies>
-				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
-			</Policies>
-		</RollingRandomAccessFile>
+		<!-- <RollingRandomAccessFile name="BusinessLog" fileName="${BACKUP_HOME}/business.log" filePattern="${BACKUP_HOME}/business.%d{yyyy-MM-dd}.log"> -->
+		<!-- <PatternLayout pattern="${PATTERN_FORMAT}" /> -->
+		<!-- <Policies> -->
+		<!-- <TimeBasedTriggeringPolicy interval="1" modulate="true" /> -->
+		<!-- </Policies> -->
+		<!-- </RollingRandomAccessFile> -->
 	</appenders>
 
 	<loggers>
@@ -39,7 +39,7 @@
 		<!-- Root Logger -->
 		<root level="debug">
 			<appender-ref ref="Console" />
-			<appender-ref ref="BusinessLog" />
+			<!-- <appender-ref ref="BusinessLog" /> -->
 		</root>
 
 	</loggers>

@@ -1,12 +1,13 @@
 package com.wangxin;
 
-import com.wangxin.common.datasource.DynamicDataSourceRegister;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import com.wangxin.common.datasource.DynamicDataSourceRegister;
 
 //@EnableConfigServer // 集成config配置文件
 @Import({ DynamicDataSourceRegister.class }) //集成druid多数据源

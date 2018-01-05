@@ -1,22 +1,40 @@
 server:
   port: 2000
+
 spring:
   application:
     name: sc_provider
+  redis:
+    # database: 0
+    hostName: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 0
+    pool:
+      maxTotal: 30 # 控制一个pool可分配多少个jedis实例
+      maxIdle: 10 # 最大能够保持idel状态的对象数
+      minIdle: 5 # 最小能够保持idel状态的对象数
+      maxWaitMillis: 3000 # 表示当borrow一个jedis实例时，最大的等待时间，如果超过等待时间，则直接抛出JedisConnectionException
+      timeBetweenEvictionRunsMillis: 30000 # 多长时间检查一次连接池中空闲的连接
+      minEvictableIdleTimeMillis: 30000 # 空闲连接多长时间后会被收回, 单位是毫秒
+      testOnCreate: true # 当调用create Object方法时，是否进行有效性检查      
+      testOnBorrow: true # 当调用borrow Object方法时，是否进行有效性检查
+      testOnReturn: true # 当调用return Object方法时，是否进行有效性检查
+      testWhileIdle: true # 当调用test idle方法时，是否进行有效性检查
   #cloud:
     #config:
       #server:
         #git:
           #uri: https://github.com/wangxinforme/sc/
-          #search-paths: sc-config #可以以,号分隔
-          #username: your account
-          #password: your password
+          #search-paths: sc-config
+          #username:  # your account
+          #password:  # your password
 
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:1111/eureka/
-
+    
 #management:
   #security:
      #enabled: false
@@ -47,13 +65,13 @@ custom:
   datasource:
     names: db1,db2
     db1:
-      url: jdbc:mysql://127.0.0.1:3306/demo?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=false
       driverClassName: com.mysql.jdbc.Driver
       username: root
       password: root
       validationQuery: SELECT 1
     db2:
-      url: jdbc:mysql://127.0.0.1:3306/auth?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      url: jdbc:mysql://127.0.0.1:3306/demo?useUnicode=true&characterEncoding=UTF-8&useSSL=false
       driverClassName: com.mysql.jdbc.Driver
       username: root
       password: root

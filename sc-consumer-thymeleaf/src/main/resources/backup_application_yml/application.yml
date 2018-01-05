@@ -9,6 +9,11 @@ spring:
     cache: false
     encoding: UTF-8
     mode: LEGACYHTML5
+  cloud:
+    name: provider
+    profile: dev
+    uri: http://localhost:8001/
+    label: master
     
 eureka:
   client:
@@ -18,10 +23,8 @@ eureka:
 feign:
   httpclient:
     enabled: true
-
-provider:
-  ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+  #hystrix:
+    #enabled: false
 
 hystrix:  
   command:  
@@ -30,6 +33,10 @@ hystrix:
         isolation:  
           thread:  
             timeoutInMilliseconds: 5000 #缺省为1000
+
+provider:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 
 logging:
   config: classpath:conf/log4j2.xml

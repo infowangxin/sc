@@ -37,5 +37,4 @@ public class HystrixSimpleController {
         log.info(result);
         return result;
     }
-
 }
