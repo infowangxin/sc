@@ -54,6 +54,8 @@ public class User extends BaseEntity<String> {
     @ApiModelProperty(name = "modifyTime", value = "用户最后修改时间", dataType = "date", example = "2017-01-01 00:00:00.000")
     private Date modifyTime;
 
+
+
     public String getId() {
         return id;
     }

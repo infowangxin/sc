@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
-    
+
     @Autowired
     private RedisIdGenerator redisIdGenerator;
 
