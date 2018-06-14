@@ -8,7 +8,8 @@
 		<!-- 日志备份目录 -->
 		<!--<property name="BACKUP_HOME">./sc/sc-eureka/logs</property> -->
 		<property name="BACKUP_HOME">./logs</property>
-		<property name="PATTERN_FORMAT">%d{yyyy/MM/dd HH:mm:ss,SSS} %-6p %-21t %c.%M(%F:%L) - %m%n</property>
+		<property name="PATTERN_FORMAT">%d{yy/MM/dd HH:mm:ss,SSS} %-6r [%-6p] [%-21t] %C.%M(%F:%L) - %m%n</property>
+		
 	</properties>
 
 	<appenders>
