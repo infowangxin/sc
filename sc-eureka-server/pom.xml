@@ -9,7 +9,7 @@
 		<version>1.0</version>
 	</parent>
 
-	<artifactId>sc-eureka</artifactId>
+	<artifactId>sc-eureka-server</artifactId>
 
 	<packaging>jar</packaging>
 
