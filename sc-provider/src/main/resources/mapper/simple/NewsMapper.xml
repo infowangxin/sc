@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.wangxin.mapper.simple.NewsMapper">
+<mapper namespace="com.wangxin.provider.mapper.simple.NewsMapper">
 
-	<resultMap id="newsMap" type="com.wangxin.api.model.simple.News">
+	<resultMap id="newsMap" type="com.wangxin.common.api.model.simple.News">
 		<result column="id" property="id" />
 		<result column="address" property="address" />
 		<result column="create_time" property="createTime" />
@@ -12,7 +12,7 @@
 		<result column="title" property="title" />
 	</resultMap>
 
-	<insert id="insert" parameterType="com.wangxin.api.model.simple.News">
+	<insert id="insert" parameterType="com.wangxin.common.api.model.simple.News">
 		insert into t_news(id , address , create_time , description , news_time , title) values(#{id} , #{address} , #{createTime} , #{description} , #{newsTime} , #{title})
 	</insert>
 
@@ -67,7 +67,7 @@
 		order by create_time desc
 	</select>
 
-	<update id="update" parameterType="com.wangxin.api.model.simple.News">
+	<update id="update" parameterType="com.wangxin.common.api.model.simple.News">
 		update t_news
 		<set>
 			<if test="address != null and address!='' ">

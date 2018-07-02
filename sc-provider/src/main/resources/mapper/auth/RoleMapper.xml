@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.wangxin.mapper.auth.RoleMapper">
+<mapper namespace="com.wangxin.provider.mapper.auth.RoleMapper">
 
-	<resultMap id="roleMap" type="com.wangxin.api.model.auth.Role">
+	<resultMap id="roleMap" type="com.wangxin.common.api.model.auth.Role">
 		<result property="id" column="id" />
 		<result property="name" column="name" />
 		<result property="code" column="code" />
 		<result property="remark" column="remark" />
 	</resultMap>
 
-	<insert id="insert" parameterType="com.wangxin.api.model.auth.Role">
+	<insert id="insert" parameterType="com.wangxin.common.api.model.auth.Role">
 		 <![CDATA[ insert into t_sys_role(id , name, code , remark) values(#{id} , #{name} , #{code} , #{remark} ) ]]>
 	</insert>
 
@@ -70,7 +70,7 @@
 		<include refid="where_xxx" />
 	</select>
 
-	<update id="update" parameterType="com.wangxin.api.model.auth.Role">
+	<update id="update" parameterType="com.wangxin.common.api.model.auth.Role">
 		update t_sys_role
 		<set>
 			<if test="name != null">
