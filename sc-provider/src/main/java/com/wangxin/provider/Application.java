@@ -9,7 +9,6 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -22,8 +21,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Import({DynamicDataSourceRegister.class}) // 集成druid多数据源
 @EnableTransactionManagement // 开启事务
 @ServletComponentScan // 开启自动注解
-@EnableConfigServer // 集成config配置文件，开启config，则swagger禁用掉，两者有冲突，会导致swagger不能正常使用
-//@EnableSwagger2
+@EnableConfigServer//开启配置文件
+@EnableSwagger2//开启swagger
 @EnableDiscoveryClient // 向Eureka注册
 @SpringBootApplication // 声明启动项
 public class Application {
@@ -59,7 +58,12 @@ public class Application {
 
     @Bean
     public Docket createRestApi() {
-        return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select().apis(RequestHandlerSelectors.basePackage("com.wangxin")).paths(PathSelectors.any()).build();
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.wangxin"))
+                .paths(PathSelectors.any()
+                ).build();
     }
 
     private ApiInfo apiInfo() {
