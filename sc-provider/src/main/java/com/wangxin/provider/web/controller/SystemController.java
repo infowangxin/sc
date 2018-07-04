@@ -22,7 +22,7 @@ public class SystemController {
 
     @GetMapping("/")
     public String swaggerui() {
-        return "redirect:/msg";
+        return "redirect:/swagger-ui.html";
     }
 
     @SuppressWarnings("deprecation")
