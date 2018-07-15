@@ -16,7 +16,7 @@ import org.springframework.http.HttpStatus;
 
 @ServletComponentScan
 @EnableDiscoveryClient
-@EnableFeignClients
+@EnableFeignClients({"com.wangxin.feign"})
 @EnableHystrixDashboard
 @EnableHystrix
 @SpringBootApplication

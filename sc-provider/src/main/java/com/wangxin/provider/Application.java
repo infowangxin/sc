@@ -6,16 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.config.server.EnableConfigServer;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Import({DynamicDataSourceRegister.class}) // 集成druid多数据源
@@ -56,22 +48,22 @@ public class Application {
     @ApiModelProperty：描述一个model的属性
     */
 
-    @Bean
-    public Docket createRestApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("com.wangxin"))
-                .paths(PathSelectors.any()
-                ).build();
-    }
+    //@Bean
+    //public Docket createRestApi() {
+    //    return new Docket(DocumentationType.SWAGGER_2)
+    //            .apiInfo(apiInfo())
+    //            .select()
+    //            .apis(RequestHandlerSelectors.basePackage("com.wangxin"))
+    //            .paths(PathSelectors.any()
+    //            ).build();
+    //}
 
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("SpringCloud示例")
-                .description("Github Star \"https://github.com/wangxinforme/sc\"")
-                .termsOfServiceUrl("https://github.com/wangxinforme/sc")
-                .contact(new Contact("胡桃夹子", "https://github.com/wangxinforme", "wangxinforme@163.com"))
-                .version("1.0")
-                .build();
-    }
+    //private ApiInfo apiInfo() {
+    //    return new ApiInfoBuilder().title("SpringCloud示例")
+    //            .description("Github Star \"https://github.com/wangxinforme/sc\"")
+    //            .termsOfServiceUrl("https://github.com/wangxinforme/sc")
+    //            .contact(new Contact("胡桃夹子", "https://github.com/wangxinforme", "wangxinforme@163.com"))
+    //            .version("1.0")
+    //            .build();
+    //}
 }
