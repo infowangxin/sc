@@ -8,6 +8,7 @@ import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 @FeignClient(path = "simple", value = "provider", fallback = NewsRemoteClientHystrix.class)
+//@FeignClient(path = "simple", value = "provider")
 public interface NewsRemoteClient {
 
     @RequestMapping(value = "/addNews", method = RequestMethod.POST)
