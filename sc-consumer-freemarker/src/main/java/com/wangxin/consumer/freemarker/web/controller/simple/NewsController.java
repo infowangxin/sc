@@ -1,10 +1,9 @@
 package com.wangxin.consumer.freemarker.web.controller.simple;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageInfo;
+import com.wangxin.common.api.common.exception.BusinessException;
+import com.wangxin.common.api.model.simple.News;
 import com.wangxin.feign.web.remote.simple.NewsRemoteClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,12 +12,18 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSON;
-import com.github.pagehelper.PageInfo;
-import com.wangxin.common.api.common.exception.BusinessException;
-import com.wangxin.common.api.model.simple.News;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author 王鑫
@@ -91,8 +96,9 @@ public class NewsController {
     public String load(@PathVariable String id, ModelMap map) {
         log.info("# ajax加载新闻对象");
         News news = newsRemoteClient.findNewsById(id);
-        if (null == news)
+        if (null == news) {
             throw new BusinessException("非法参数");
+        }
         map.addAttribute("news", news);
         return "view/news/edit_form";
     }
