@@ -50,7 +50,7 @@ public class DemoApiFeignClientImpl implements DemoApiFeignClient {
     public AppEntity getMessage(Integer value) throws BusinessException {
         try {
             // 此处线程睡眠3秒为了方便做性能测试
-            Thread.sleep(3000);
+            Thread.sleep(11000);
             return getDiff(value);
         } catch (InterruptedException e) {
             LOG.error("# Thread.sleep fail");

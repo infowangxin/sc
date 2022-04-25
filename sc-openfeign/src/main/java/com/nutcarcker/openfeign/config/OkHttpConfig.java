@@ -74,6 +74,8 @@ public class OkHttpConfig {
     @Bean
     public ConnectionPool pool() {
         // 最大连接数、连接存活时间、存活时间单位（分钟）
+        // max-connections: 200 # 默认值
+        // max-connections-per-route: 50 # 默认值
         return new ConnectionPool(200, 5, TimeUnit.MINUTES);
     }
 
@@ -89,6 +91,8 @@ public class OkHttpConfig {
                 // 设置连接池
                 //.connectionPool(new ConnectionPool())
                 .connectionPool(pool())
+                // 设置拦截器
+                .addInterceptor(new OkHttpLogInterceptor())
                 .build();
     }
 
