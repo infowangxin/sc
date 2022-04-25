@@ -1,9 +1,0 @@
-/target
-/.externalToolBuilders
-/*.log
-/.classpath
-/.project
-/.settings
-/bin
-/*.iml
-/src/main/resources/rebel.xml

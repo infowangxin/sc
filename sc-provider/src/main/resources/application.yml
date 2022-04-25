@@ -1,0 +1,23 @@
+server:
+    port: 9001
+spring:
+    application:
+        name: provider
+    cloud:
+        nacos:
+            discovery:
+                server-addr: 127.0.0.1:8848
+feign:
+    compression:
+        request:
+            # 压缩支持的MIME类型
+            mime-types: text/xml,application/xml,application/json
+            # 开启请求数据的压缩功能
+            enabled: true
+            # 数据压缩下限  1024标识传输数据大于1024 才会进行数据压缩（最小压缩值标准）
+            min-request-size: 1024
+        # 开启响应数据的压缩功能
+        response:
+            enabled: true
+    okhttp:
+        enabled: true

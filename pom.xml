@@ -1,71 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.wangxin</groupId>
-	<artifactId>sc</artifactId>
-	<version>1.0</version>
-	<packaging>pom</packaging>
+    <groupId>com.nutcracker</groupId>
+    <artifactId>sc</artifactId>
+    <version>2022.4.20-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <url>https://github.com/infowangxin/sc</url>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<!-- <version>1.5.13.RELEASE</version> -->
-		<version>1.5.9.RELEASE</version>
-		<!-- <version>1.5.6.RELEASE</version> -->
-		<relativePath />
-	</parent>
+    <name>${project.artifactId}</name>
+    <description>微服务示例工程</description>
 
-	<modules>
-		<module>sc-commons</module>
-		<module>sc-eureka-server</module>
-		<module>sc-consumer-freemarker</module>
-		<module>sc-consumer-jsp</module>
-		<module>sc-consumer-thymeleaf</module>
-		<module>sc-hystrix</module>
-		<module>sc-provider</module>
-		<module>sc-feign</module>
-		<module>sc-turbine</module>
-	</modules>
+    <modules>
+        <module>sc-consumer</module>
+        <module>sc-openfeign</module>
+        <module>sc-provider</module>
+    </modules>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <inceptionYear>2022</inceptionYear>
 
-		<mybatis.version>3.3.0</mybatis.version>
-		<mybatis-spring.version>1.2.3</mybatis-spring.version>
-	</properties>
+    <scm>
+        <!-- SCM的URL,该URL描述了版本库和如何连接到版本库。欲知详情，请看SCMs提供的URL格式和列表。该连接只读。 -->
+        <connection>
+            scm:git:git@github.com:infowangxin/sc
+        </connection>
+        <!-- 给开发者使用的，类似connection元素。即该连接不仅仅只读 -->
+        <developerConnection>
+            scm:git:git@github.com:infowangxin/sc
+        </developerConnection>
+        <!-- 指向项目的可浏览SCM库（例如ViewVC或者Fisheye）的URL。 -->
+        <url>https://github.com/infowangxin/sc</url>
+        <!-- 当前代码的标签，在开发阶段默认为HEAD -->
+        <tag/>
+    </scm>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Dalston.SR5</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
+    <!-- 描述项目所属组织的各种属性。Maven产生的文档用 -->
+    <organization>
+        <!-- 组织的全名 -->
+        <name>胡桃夹子</name>
+        <!-- 组织主页的URL -->
+        <url>https://github.com/infowangxin</url>
+    </organization>
 
-			<dependency>
-				<groupId>com.google.guava</groupId>
-				<artifactId>guava</artifactId>
-				<version>20.0</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+    <developers>
+        <developer>
+            <name>胡桃夹子</name>
+            <email>infowangxin@139.com</email>
+        </developer>
+    </developers>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<testFailureIgnore>true</testFailureIgnore>
-					<skip>true</skip>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    <!-- 项目的问题管理系统（Bugzilla，Jira，Scarab，或任何你喜欢的问题管理系统）的名称或URL，本例为Jira -->
+    <issueManagement>
+        <!-- 问题管理系统（例如Jira）的名字 -->
+        <system>github</system>
+        <!-- 该项目使用的问题管理系统的URL -->
+        <url>https://github.com/infowangxin/sc/issues</url>
+    </issueManagement>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.test.skip>true</maven.test.skip>
+        <skipTests>true</skipTests>
+
+        <!-- springboot & spring-cloud -->
+        <spring-boot.version>2.6.7</spring-boot.version>
+        <!--<spring-boot.version>2.6.3</spring-boot.version>-->
+        <spring-cloud.version>2021.0.1</spring-cloud.version>
+
+        <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>
+        <spring-cloud.bootstrap.version>3.1.1</spring-cloud.bootstrap.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.nutcracker</groupId>
+                <artifactId>sc-openfeign</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- springboot 依赖 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- spring cloud 依赖 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- spring cloud alibaba 依赖 -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- alibaba nacos 配置 -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+            </dependency>
+
+            <!-- 引入这个依赖解决SpringCloud2021.1整合nacos-bootstrap配置不生效的问题 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-bootstrap</artifactId>
+                <version>${spring-cloud.bootstrap.version}</version>
+            </dependency>
+
+            <!-- okhttp -->
+            <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-okhttp</artifactId>
+                <version>11.8</version>
+            </dependency>
+
+            <!-- apache common support -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>4.4</version>
+            </dependency>
+
+            <!-- json -->
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>2.0.1</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>
