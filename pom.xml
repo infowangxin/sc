@@ -15,6 +15,7 @@
 
     <modules>
         <module>sc-consumer</module>
+        <module>sc-gateway</module>
         <module>sc-openfeign</module>
         <module>sc-provider</module>
     </modules>
@@ -76,11 +77,12 @@
         <skipTests>true</skipTests>
 
         <!-- springboot & spring-cloud -->
-        <!--<spring-boot.version>2.6.3</spring-boot.version>-->
         <spring-boot.version>2.6.7</spring-boot.version>
-        <spring-cloud.version>2021.0.1</spring-cloud.version>
+        <!--<spring-boot.version>2.5.13</spring-boot.version>-->
+        <spring-cloud.version>2021.0.2</spring-cloud.version>
+        <!--<spring-cloud.version>2020.0.5</spring-cloud.version>-->
 
-        <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>
+        <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
         <spring-cloud.bootstrap.version>3.1.1</spring-cloud.bootstrap.version>
     </properties>
 
@@ -110,6 +112,13 @@
                 <scope>import</scope>
             </dependency>
 
+            <!-- 引入这个依赖解决SpringCloud2021.1整合nacos-bootstrap配置不生效的问题 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-bootstrap</artifactId>
+                <version>${spring-cloud.bootstrap.version}</version>
+            </dependency>
+
             <!-- spring cloud alibaba 依赖 -->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
@@ -117,20 +126,6 @@
                 <version>${spring-cloud-alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-
-            <!-- alibaba nacos 配置 -->
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
-            </dependency>
-
-            <!-- 引入这个依赖解决SpringCloud2021.1整合nacos-bootstrap配置不生效的问题 -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-bootstrap</artifactId>
-                <version>${spring-cloud.bootstrap.version}</version>
             </dependency>
 
             <!-- okhttp -->
